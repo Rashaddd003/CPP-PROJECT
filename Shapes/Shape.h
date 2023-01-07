@@ -15,8 +15,8 @@ class shape
 protected:
 	int ID;		//Each shape has an ID
 	GfxInfo ShpGfxInfo;	//shape graphis info
-	
-	/// Add more parameters if needed.
+	bool ImagePresent = false;
+	/// Add more parameters if needed.  OK!
 
 public:
 	string type;
@@ -32,7 +32,11 @@ public:
 	void ChngDrawClr(color Dclr);	//changes the shape's drawing color
 	void ChngFillClr(color Fclr);	//changes the shape's filling color
 	void setSaved();
+	void setImagePresent();
+	bool getImagePresentState();
+	virtual void Stick(GUI* pGUI);
 	bool IsSaved();
+	virtual shape* PasteShape();
 	///The following functions should be supported by the shape class
 	///It should be overridden by each inherited shape
 

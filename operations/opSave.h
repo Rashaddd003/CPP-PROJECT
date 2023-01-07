@@ -1,5 +1,3 @@
-
-
 #pragma once
 #include "operation.h"
 #include "..\CMUgraphicsLib\colors.h"
@@ -13,7 +11,6 @@ public:
 	opSave(controller* pCont);
 	virtual void ReadActionParameters();
 	string getFilename();
-	//Add rectangle to the controller
 	virtual void Execute();
 
 };

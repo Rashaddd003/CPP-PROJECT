@@ -41,8 +41,11 @@ void Graph::Addoperation(string x)
 void Graph::Draw(GUI* pUI) const
 {
 	pUI->ClearDrawArea();
-	for (auto shapePointer : shapesList)
+	for (auto shapePointer : shapesList) {
+		StickingImage(pUI);
 		shapePointer->Draw(pUI);
+
+	}
 }
 
 void Graph::DeleteShapeFromList()
@@ -78,6 +81,28 @@ shape* Graph::Getshape(int x, int y) const
 		}
 	}	
 	return nullptr;
+}
+
+
+void Graph::CopyShape()
+{
+	Clipboard.clear();
+	for (shape* aShape : shapesList) {
+		if (aShape->IsSelected())
+		{
+			Clipboard.push_back(aShape);
+		}
+	}
+}
+
+void Graph::oppPasteShape()
+{
+	for (shape* aShape : Clipboard) {
+		if (aShape)
+		{
+			shapesList.push_back(aShape->PasteShape());
+		}
+	}
 }
 
 void Graph::SelectaShape(shape* Selected, color oldColor)
@@ -263,6 +288,16 @@ void Graph::Redo()
 		shape* newshape = resizeagain((ResizedShapesUndo[ResizedShapesUndo.size() - 1]), (LastUndoResize[LastUndoResize.size() - 1]));
 		Addshape(newshape);
 		LastOperation.push_back("Resize");
+	}
+}
+
+void Graph::StickingImage(GUI* pGUI) const
+{
+	for (shape* aShape : shapesList) {
+		if (aShape->getImagePresentState())
+		{
+			aShape->Stick(pGUI);
+		}
 	}
 }
 

@@ -1,6 +1,7 @@
 #include "GUI.h"
 #include "../Shapes/Shape.h"
-
+using namespace std;
+#include <string>
 GUI::GUI()
 {
 	//Initialize user interface parameters
@@ -100,6 +101,9 @@ operationType GUI::GetUseroperation() const
 			case ICON_PLAY: return TO_PLAY;
 			case ICON_Load: return LOAD;
 			case ICON_Select: return SELECT;
+			case ICON_Copy: return Copy;
+			case ICON_Paste: return Paste;
+			case ICON_Stick: return Stick;
 			case ICON_DELETE: return Delete;
 			case ICON_EXIT: return EXIT;
 			case ICON_RESIZE: return RESIZE;
@@ -237,6 +241,9 @@ void GUI::CreateDrawToolBar()
 	MenuIconImages[ICON_CHANGE_COLOR] = "images\\MenuIcons\\Change_Draw_Color.jpg";
 	MenuIconImages[ICON_CHANGE_FILL_COLOR] = "images\\MenuIcons\\Change_Fill_Color.jpg";
 	MenuIconImages[ICON_Select] = "images\\MenuIcons\\Icon_Select.jpg";
+	MenuIconImages[ICON_Copy] = "images\\MenuIcons\\Copy.jpg";
+	MenuIconImages[ICON_Paste] = "images\\MenuIcons\\Paste.jpg";
+	MenuIconImages[ICON_Stick] = "images\\MenuIcons\\Sticker.jpg";
 	MenuIconImages[ICON_DELETE] = "images\\MenuIcons\\DeleteIcon.jpg";
 	MenuIconImages[ICON_RECT] = "images\\MenuIcons\\Menu_Rect.jpg";
 	MenuIconImages[ICON_CIRC] = "images\\MenuIcons\\Menu_Circ.jpg";
@@ -296,6 +303,12 @@ void GUI::ClearDrawArea() const
 	pWind->DrawRectangle(0, ToolBarHeight, width, height - StatusBarHeight);
 
 }
+
+void GUI::StickImage(string PathOfImage, Point Pointt, int WW, int LL) const
+{
+	pWind->DrawImage(PathOfImage, Pointt.x, Pointt.y, WW, LL);
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////
 
 void GUI::PrintMessage(string msg) const	//Prints a message on status bar

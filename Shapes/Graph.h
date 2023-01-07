@@ -15,6 +15,7 @@ private:
 	vector <double> LastResize;
 	vector <string> LastOperation;
 	vector <shape*> shapesList; //a container to hold all shapes
+	vector <shape*> Clipboard; //a container to hold all copied shapes
 	vector <shape*> DeletedshapesList; //container to hold the deleted shapes
 	vector <shape*> UndoneDrawing;
 	vector <shape*> ResizedShapesUndo;
@@ -32,6 +33,8 @@ public:
 	void Draw(GUI* pUI) const;			//Draw the graph (draw all shapes)
 	void DeleteShapeFromList();
 	shape* Getshape(int x, int y) const; //Search for a shape given a point inside the shape
+	void CopyShape();
+	void oppPasteShape();
 	void SelectaShape(shape* Selected, color oldColor);
 	void Save(ofstream& outfile);	//Save all shapes to a file
 	void load(ifstream& inputfile, GUI* pUI, Graph* pGr);	//Load all shapes from a file
@@ -41,4 +44,5 @@ public:
 	void RotateShape();
 	void Undo();
 	void Redo();
+	void StickingImage(GUI* pGUI) const ;
 };

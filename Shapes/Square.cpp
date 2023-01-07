@@ -7,16 +7,17 @@ Square::Square()
 
 }
 
-Square::Square(Point p1, double lenght, GfxInfo shapeGfxInfo):shape(shapeGfxInfo)
+Square::Square(Point p1, double length, GfxInfo shapeGfxInfo):shape(shapeGfxInfo)
 {
+	Length = length;
 	Corner1 = p1;
     //center = p1;
     //StPt = p2;
     //sides = 4;
     //SetVertices();
     //type = "Square";
-	Corner2.x = Corner1.x + lenght;
-	Corner2.y = Corner1.y + lenght;
+	Corner2.x = Corner1.x + length;
+	Corner2.y = Corner1.y + length;
 	
 }
 
@@ -47,6 +48,15 @@ bool Square::ClickedInside(int x, int y) const
 		return false;
 	}
 
+}
+
+shape* Square::PasteShape()
+{
+	Point Corner11, Corner22;
+	Corner11.x = Corner1.x + 20;
+	Corner11.y = Corner1.y - 20;
+
+	return new Square(Corner11, Length, ShpGfxInfo);
 }
 
 
@@ -109,6 +119,17 @@ void Square::Load(ifstream& inFile)
 	ShpGfxInfo.BorderWdth = x;
 
 	ShpGfxInfo.isSelected = FALSE;
+}
+
+void Square::Stick(GUI* pGUI)
+{
+	Point P;
+	P.x = Corner1.x;
+	P.y = Corner1.y;
+	int width = abs(Corner1.x - Corner2.x);
+	int length = abs(Corner1.y - Corner2.y);
+	string name = "images\\MenuIcons\\idkk.jpg";
+	pGUI->StickImage(name, P, width, length);
 }
 
 

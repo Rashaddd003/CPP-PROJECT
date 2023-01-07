@@ -23,6 +23,10 @@
 #include "operations/opRotateShape.h"
 #include "operations/opUndo.h"
 #include "operations/opRedo.h"
+#include "operations/opCopy.h"
+#include "operations/opPaste.h"
+#include "operations/opStickImage.h"
+#include "operations/opStickImage.h"
 
 class operation; //forward declaration
 

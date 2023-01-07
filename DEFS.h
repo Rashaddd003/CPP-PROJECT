@@ -36,6 +36,9 @@ enum operationType //The operations supported (you can add more if needed)
 	SELECT,
 	Delete,
 	LOAD,//Load a graph from a file
+	Copy,
+	Paste,
+	Stick,
 	Draw_Square,// Draw Square
 	EXIT,			//Exit the application
 

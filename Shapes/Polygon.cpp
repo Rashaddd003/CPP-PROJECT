@@ -54,6 +54,11 @@ bool RegPolygon::ClickedInside(int x, int y) const
         return c;
 }
 
+shape* RegPolygon::PasteShape()
+{
+	return nullptr;
+}
+
 void RegPolygon::Save(ofstream& OutFile)
 {
     OutFile << type << " " <<sides<<" "<<center.x << " " << center.y << " " << StPt.x << " " << StPt.y << " " << ShpGfxInfo.isFilled;
@@ -127,6 +132,20 @@ void RegPolygon::Resize(double x)
 		Vertexx[i] = center.x + ((x) * (Vertexx[i] - center.x));
 		Vertexy[i] = center.y + ((x) * (Vertexy[i] - center.y));
 	}
+}
+
+void RegPolygon::Stick(GUI* pGUI)
+{
+	double radiuss = sqrt(pow((StPt.x - center.x), 2) + pow((StPt.y - center.y), 2));
+	Point P;
+	P.x = center.x - radiuss;
+	P.y = center.y - radiuss;
+	int width = radiuss * 2;
+	int length = width;
+	string name = "images\\MenuIcons\\idkk.jpg";
+	pGUI->StickImage(name, P, width, length);
+
+
 }
 
 void RegPolygon::Rotate()

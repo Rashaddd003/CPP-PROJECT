@@ -1,8 +1,10 @@
 #include "Triangle.h"
+#include <cmath>
+#include <iostream>
+using namespace std;
 
 Triangle::Triangle()
 {
-
 }
 
 Triangle::Triangle(Point p1, Point p2, Point p3, GfxInfo shapeGfxInfo) :shape(shapeGfxInfo)
@@ -33,6 +35,18 @@ bool Triangle::ClickedInside(int x, int y) const
 void Triangle::Draw(GUI * pUI) const
 {
 	pUI->DrawTriangle(corner1, corner2, corner3, ShpGfxInfo);
+}
+shape* Triangle::PasteShape()
+{
+	Point corner11, corner22, corner33;
+	corner11.x = corner1.x + 20;
+	corner11.y = corner1.y - 20;
+	corner22.x = corner2.x + 20;
+	corner22.y = corner2.y - 20;
+	corner33.x = corner3.x + 20;
+	corner33.y = corner3.y - 20;
+	return new Triangle(corner11, corner22, corner33, ShpGfxInfo);
+	
 }
 void Triangle::Save(ofstream& OutFile)
 {
@@ -106,6 +120,21 @@ void Triangle::Resize(double x)
 	corner2.y = corner1.y + ((x) * (corner2.y - corner1.y));
 	corner3.x = corner1.x + ((x) * (corner3.x - corner1.x));
 	corner3.y = corner1.y + ((x) * (corner3.y - corner1.y));
+}
+
+void Triangle::Stick(GUI* pGUI)
+{
+	double MaxPx = max(max(corner1.x, corner2.x),corner3.x);
+	double MinPx = min(min(corner1.x, corner2.x),corner3.x);
+	double MaxPy = max(max(corner1.y, corner2.y),corner3.y);
+	double MinPy = min(min(corner1.y, corner2.y), corner3.y);
+	Point P;
+	P.x = MinPx;
+	P.y = MinPy;
+	int width = MaxPx - MinPx;
+	int length = MaxPy - MinPy;
+	string name = "images\\MenuIcons\\idkk.jpg";
+	pGUI->StickImage(name, P, width, length);
 }
 
 void Triangle::Rotate()

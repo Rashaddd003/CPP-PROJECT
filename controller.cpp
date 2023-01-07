@@ -64,14 +64,21 @@ operation* controller::createOperation(operationType OpType)
 		case LOAD:
 			pOp = new opLoad(this);
 			break;
+		case Copy:
+			pOp = new opCopy(this);
+			break;
+		case Paste:
+			pOp = new opPaste(this);
+			break;
 		case TO_PLAY:
 			pOp = new opToPlayMode(this);
-
 			break;
 		
 		case EXIT:
 			pOp = new opExit(this);
-			
+			break;
+		case Stick:
+			pOp = new opStickImage(this);
 			break;
 
 		case RESIZE:

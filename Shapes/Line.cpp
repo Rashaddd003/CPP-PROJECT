@@ -48,6 +48,17 @@ bool Line::ClickedInside(int x, int y) const
 		else return false;
 	}
 }
+shape* Line::PasteShape()
+{
+	Point Point11, Point22;
+	Point11.x = point1.x + 20;
+	Point11.y = point1.y - 20;
+	Point22.x = point2.x + 20;
+	Point22.y = point2.y - 20;
+
+	return new Line(Point11, Point22, ShpGfxInfo);
+
+}
 void Line::Save(ofstream& OutFile)
 {
 
@@ -115,6 +126,10 @@ void Line::Resize(double x)
 {
 	point2.x = point1.x + ((x) * (point2.x - point1.x));
 	point2.y = point1.y + ((x) * (point2.y - point1.y));
+}
+
+void Line::Stick(GUI* pGUI)
+{
 }
 
 void Line::Rotate()

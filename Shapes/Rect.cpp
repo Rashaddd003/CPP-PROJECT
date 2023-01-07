@@ -39,6 +39,18 @@ bool Rect::ClickedInside(int x, int y) const
 
 }
 
+shape* Rect::PasteShape()
+{
+	Point Corner11, Corner22;
+	Corner11.x = Corner1.x + 20;
+	Corner11.y = Corner1.y - 20;
+	Corner22.x = Corner2.x + 20;
+	Corner22.y = Corner2.y - 20;
+
+	return new Rect(Corner11, Corner22, ShpGfxInfo);
+
+}
+
 void Rect::Save(ofstream& OutFile)
 {
 	OutFile << type << " " << Corner1.x << " " << Corner1.y << " " << Corner2.x << " " << Corner2.y << " " << (ShpGfxInfo.isFilled) << " " << to_string(ShpGfxInfo.FillClr.ucRed) << " " << to_string(ShpGfxInfo.FillClr.ucGreen) << " " << to_string(ShpGfxInfo.FillClr.ucBlue) << " " << to_string(ShpGfxInfo.DrawClr.ucRed) << " " << to_string(ShpGfxInfo.DrawClr.ucGreen) << " " << to_string(ShpGfxInfo.DrawClr.ucBlue) << " " << (ShpGfxInfo.BorderWdth) << endl;
@@ -108,6 +120,17 @@ void Rect::Resize(double x)
 	Corner2.y *= x;
 	Corner2.y-=(x-1)*Corner1.y;
 	
+}
+
+void Rect::Stick(GUI* pGUI)
+{
+	Point P;
+	P.x = Corner1.x;
+	P.y = Corner1.y;
+	int width = abs(Corner1.x - Corner2.x);
+	int length = abs(Corner1.y - Corner2.y);
+	string name = "images\\MenuIcons\\idkk.jpg";
+	pGUI->StickImage(name, P, width, length);
 }
 
 void Rect::Rotate()

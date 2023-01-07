@@ -50,6 +50,9 @@ class GUI
 		ICON_Save,
 		ICON_Load,
 		ICON_Select,
+		ICON_Copy,
+		ICON_Paste,
+		ICON_Stick,
 		ICON_PLAY,
 		ICON_RESIZE,
 		ICON_ROTATE,
@@ -118,7 +121,7 @@ public:
 	void ClearToolBar() const;
 	void ClearStatusBar() const;	//Clears the status bar
 	void ClearDrawArea() const;	//Clears the drawing area
-
+	void StickImage(string , Point , int , int ) const;
 	// -- shapes Drawing functions
 	void DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo) const;  //Draw a rectangle
 	void DrawCircle(Point P1, Point P2, GfxInfo RectGfxInfo) const;  //Draw a circle
