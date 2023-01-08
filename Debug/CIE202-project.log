@@ -1,21 +1,17 @@
 ﻿cl : command line  warning D9035: option 'Gm' has been deprecated and will be removed in a future release
-  opStickImage.cpp
-  Triangle.cpp
-R:\ZC\2. First Year\First semester\CIE 202\Project\PROJECT FINAL\Shapes\Triangle.cpp(105,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-R:\ZC\2. First Year\First semester\CIE 202\Project\PROJECT FINAL\Shapes\Triangle.cpp(106,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-R:\ZC\2. First Year\First semester\CIE 202\Project\PROJECT FINAL\Shapes\Triangle.cpp(107,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-R:\ZC\2. First Year\First semester\CIE 202\Project\PROJECT FINAL\Shapes\Triangle.cpp(108,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-R:\ZC\2. First Year\First semester\CIE 202\Project\PROJECT FINAL\Shapes\Triangle.cpp(211,8): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-R:\ZC\2. First Year\First semester\CIE 202\Project\PROJECT FINAL\Shapes\Triangle.cpp(212,8): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-R:\ZC\2. First Year\First semester\CIE 202\Project\PROJECT FINAL\Shapes\Triangle.cpp(213,12): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-R:\ZC\2. First Year\First semester\CIE 202\Project\PROJECT FINAL\Shapes\Triangle.cpp(214,13): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-R:\ZC\2. First Year\First semester\CIE 202\Project\PROJECT FINAL\Shapes\Triangle.cpp(222,9): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-R:\ZC\2. First Year\First semester\CIE 202\Project\PROJECT FINAL\Shapes\Triangle.cpp(223,9): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-R:\ZC\2. First Year\First semester\CIE 202\Project\PROJECT FINAL\Shapes\Triangle.cpp(224,14): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-R:\ZC\2. First Year\First semester\CIE 202\Project\PROJECT FINAL\Shapes\Triangle.cpp(225,14): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-R:\ZC\2. First Year\First semester\CIE 202\Project\PROJECT FINAL\Shapes\Triangle.cpp(251,9): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-R:\ZC\2. First Year\First semester\CIE 202\Project\PROJECT FINAL\Shapes\Triangle.cpp(252,9): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-R:\ZC\2. First Year\First semester\CIE 202\Project\PROJECT FINAL\Shapes\Triangle.cpp(253,13): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-R:\ZC\2. First Year\First semester\CIE 202\Project\PROJECT FINAL\Shapes\Triangle.cpp(254,14): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-  Generating Code...
+  Graph.cpp
+R:\ZC\2. First Year\First semester\CIE 202\Project\PROJECT FINAL\Shapes\Graph.cpp(61,20): warning C4018: '<': signed/unsigned mismatch
+R:\ZC\2. First Year\First semester\CIE 202\Project\PROJECT FINAL\Shapes\Graph.cpp(66,23): warning C4018: '<': signed/unsigned mismatch
+R:\ZC\2. First Year\First semester\CIE 202\Project\PROJECT FINAL\Shapes\Graph.cpp(84,8): warning C4101: 'S': unreferenced local variable
+R:\ZC\2. First Year\First semester\CIE 202\Project\PROJECT FINAL\Shapes\Graph.cpp(222,23): warning C4018: '<': signed/unsigned mismatch
+R:\ZC\2. First Year\First semester\CIE 202\Project\PROJECT FINAL\Shapes\Graph.cpp(398,15): warning C4101: 'p3': unreferenced local variable
+R:\ZC\2. First Year\First semester\CIE 202\Project\PROJECT FINAL\Shapes\Graph.cpp(398,9): warning C4101: 'p1': unreferenced local variable
+R:\ZC\2. First Year\First semester\CIE 202\Project\PROJECT FINAL\Shapes\Graph.cpp(398,12): warning C4101: 'p2': unreferenced local variable
+R:\ZC\2. First Year\First semester\CIE 202\Project\PROJECT FINAL\Shapes\Graph.cpp(485,21): warning C4018: '<': signed/unsigned mismatch
+R:\ZC\2. First Year\First semester\CIE 202\Project\PROJECT FINAL\Shapes\Graph.cpp(493,21): warning C4018: '<': signed/unsigned mismatch
+R:\ZC\2. First Year\First semester\CIE 202\Project\PROJECT FINAL\Shapes\Graph.cpp(512,22): warning C4018: '<': signed/unsigned mismatch
+R:\ZC\2. First Year\First semester\CIE 202\Project\PROJECT FINAL\Shapes\Graph.cpp(520,22): warning C4018: '<': signed/unsigned mismatch
+R:\ZC\2. First Year\First semester\CIE 202\Project\PROJECT FINAL\Shapes\Graph.cpp(621,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+R:\ZC\2. First Year\First semester\CIE 202\Project\PROJECT FINAL\Shapes\Graph.cpp(625,20): warning C4018: '<': signed/unsigned mismatch
+R:\ZC\2. First Year\First semester\CIE 202\Project\PROJECT FINAL\Shapes\Graph.cpp(211): warning C4715: 'Graph::CanExit': not all control paths return a value
   CIE202-project.vcxproj -> R:\ZC\2. First Year\First semester\CIE 202\Project\PROJECT FINAL\Debug\CIE202-project.exe

@@ -23,8 +23,9 @@ private:
 	vector <shape*> ResizedShapes; //container to the resized shapes
 	shape* selectedShape;	//pointer to the currently selected shape
 	vector <shape*> Clipboard; //a container to hold all copied shapes
-
-
+	Point predrag;
+	Point postdrag;
+	shape* draggedshape = nullptr;
 	
 public:										
 	Graph();
