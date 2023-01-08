@@ -1,10 +1,6 @@
 #include "Polygon.h"
 #include <cmath>
 
-RegPolygon::RegPolygon()
-{
-
-}
 
 RegPolygon::RegPolygon(Point p1, Point p2, int nsides, GfxInfo shapeGfxInfo) :shape(shapeGfxInfo)
 {
@@ -37,6 +33,11 @@ void RegPolygon::SetVertices()
 
 }
 
+int RegPolygon::getSides()
+{
+	return sides;
+}
+
 void RegPolygon::Draw(GUI* pUI) const
 {
 	pUI->DrawPolygon(Vertexx, Vertexy,sides, ShpGfxInfo);
@@ -54,6 +55,17 @@ bool RegPolygon::ClickedInside(int x, int y) const
         return c;
 }
 
+shape* RegPolygon::PasteShape()
+{
+	Point C1, St1;
+	C1.x=center.x + 20;
+	C1.y=center.y - 20;
+	St1.x= StPt.x+20;
+	St1.y= StPt.y-20;
+	return new RegPolygon(C1, St1, getSides(), getShpGfx());
+}
+
+
 void RegPolygon::Save(ofstream& OutFile)
 {
     OutFile << type << " " <<sides<<" "<<center.x << " " << center.y << " " << StPt.x << " " << StPt.y << " " << ShpGfxInfo.isFilled;
@@ -62,7 +74,7 @@ void RegPolygon::Save(ofstream& OutFile)
 
 void RegPolygon::Load(ifstream& inFile)
 {
-	type = "RegPoly";
+	/*type = "RegPoly";
 	int x;
 	string jump;
 
@@ -115,7 +127,7 @@ void RegPolygon::Load(ifstream& inFile)
 	ShpGfxInfo.BorderWdth = x;
 
 	ShpGfxInfo.isSelected = FALSE;
-	SetVertices();
+	SetVertices();*/
 
 
 
@@ -129,6 +141,38 @@ void RegPolygon::Resize(double x)
 	}
 }
 
+void RegPolygon::Stick(GUI* pGUI)
+{
+	double radiuss = sqrt(pow((StPt.x - center.x), 2) + pow((StPt.y - center.y), 2));
+	Point P;
+	P.x = center.x - radiuss;
+	P.y = center.y - radiuss;
+	int width = radiuss * 2;
+	int length = width;
+	string name = "images\\MenuIcons\\idkk.jpg";
+	pGUI->StickImage(name, P, width, length);
+
+
+}
+
+void RegPolygon::Hide(GUI* pGUI)
+{
+
+	if (Hidden)
+	{
+		double radiuss = sqrt(pow((StPt.x - center.x), 2) + pow((StPt.y - center.y), 2));
+		Point P;
+		P.x = center.x - radiuss;
+		P.y = center.y - radiuss;
+		int width = radiuss * 2;
+		int length = width;
+		string name = "images\\MenuIcons\\HideCard.jpg";
+		pGUI->StickImage(name, P, width, length);
+	}
+
+}
+
+
 void RegPolygon::Rotate()
 {
 	int swap1;
@@ -139,6 +183,28 @@ void RegPolygon::Rotate()
 
 	}
 }
+
+
+void RegPolygon::ScrambleShape(double shiftx, double shifty)
+{
+	int Dx = Vertexx[0] - shiftx;
+	int Dy = Vertexy[0] - shifty;
+	Vertexx[0] = shiftx;
+	Vertexy[0] = shifty;
+	for (int i = 1; i < sides; i++) {
+		Vertexx[i] -= Dx ;
+		Vertexy[i] -= Dy ;
+	}
+}
+
+int RegPolygon::GetMaxX()
+{
+	return max(center.x, StPt.x);
+}
+
+int RegPolygon::GetMaxY()
+{
+	return max(center.y, StPt.y);
 
 void RegPolygon::Drag(int x, int y)
 {

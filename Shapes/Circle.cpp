@@ -103,6 +103,22 @@ void Circle::Rotate()
 {
 }
 
+
+void Circle::Hide(GUI* pGUI)
+{
+	if (Hidden)
+	{
+		double radiuss = sqrt(pow((radius.x - center.x), 2) + pow((radius.y - center.y), 2));
+		Point P;
+		P.x = center.x - radiuss;
+		P.y = center.y - radiuss;
+		int width = radiuss * 2;
+		int length = width;
+		string name = "images\\MenuIcons\\HideCard.jpg";
+		pGUI->StickImage(name, P, width, length);
+	}
+}
+
 void Circle::Drag(int x, int y)
 {
 	center.x = center.x + x;
@@ -131,6 +147,26 @@ Point Circle::Shift2()
 	//p2.y = point2.y + 5;
 
 	return p2;
+}
+
+void Circle::ScrambleShape(double shiftx, double shifty)
+{
+	int Dx = center.x - shiftx;
+	int Dy = center.y - shifty;
+	center.x = shiftx;
+	center.y = shifty;
+	radius.x -= Dx;
+	radius.y -= Dy;
+}
+
+int Circle::GetMaxX()
+{
+	return max(center.x, radius.x);
+}
+
+int Circle::GetMaxY()
+{
+	return max(center.y, radius.y);
 }
 
 shape* Circle::duplicate()

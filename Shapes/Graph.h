@@ -45,6 +45,10 @@ public:
 	void Duplicate();
 	void Undo();
 	void Redo();
+	void StickingImage(GUI* pGUI) const ;
+	void HideAShape(GUI* pGUI) const ;
+	void unHideAShape(GUI* pGUI) const ;
+	void Scramble();
 	void Match(GUI* pUI,Graph* pGr );
 	Point Matchcheck(Point x);
 	void GroupShapes(GUI* pUI);

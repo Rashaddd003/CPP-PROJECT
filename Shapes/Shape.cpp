@@ -50,8 +50,47 @@ void shape::setSaved()
 	ShpGfxInfo.isSaved = true;
 }
 
+
+void shape::setImagePresent()
+{
+	ImagePresent = true;
+}
+
+void shape::setHideorNot(bool tf)
+{
+	Hidden = tf;
+}
+
+bool shape::getImagePresentState()
+{
+	return ImagePresent;
+}
+
+bool shape::getHideorNot()
+{
+	return Hidden;
+}
+
+void shape::Stick(GUI* pGUI)
+{
+}
+
+
 bool shape::IsSaved()
 {
 	return ShpGfxInfo.isSaved;
 }
+
+shape* shape::PasteShape()
+{
+	return nullptr;
+}
+
+void shape::ScrambleShape(double shiftx, double shifty)
+{
+}
+
+
+
+
 

@@ -140,6 +140,42 @@ void Line::Rotate()
 	point2.y = swap1 - center.x + center.y;
 }
 
+void Line::ScrambleShape(double shiftx, double shifty)
+{
+	int Dx = point1.x - shiftx;
+	int Dy = point1.y - shifty;
+	point1.x = shiftx;
+	point1.y = shifty;
+	point2.x -= Dx;
+	point2.y -= Dy;
+
+}
+
+int Line::GetMaxX()
+{
+	return max(point1.x, point2.x);
+}
+
+int Line::GetMaxY()
+{
+	return max(point1.y, point2.y);
+}
+
+void Line::Hide(GUI* pGUI)
+{
+
+	if (Hidden)
+	{
+		Point P;
+		P.x = point1.x;
+		P.y = point1.y;
+		int width = abs(point1.x - point2.x);
+		int length = abs(point1.y - point2.y);
+		string name = "images\\MenuIcons\\HideCard.jpg";
+		pGUI->StickImage(name, P, width, length);
+	}
+
+=======
 void Line::Drag(int x,int y)
 {
 	int p2x; int p1x; int p2y; int p1y;

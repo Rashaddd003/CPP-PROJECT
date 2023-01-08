@@ -92,6 +92,27 @@ shape* Graph::Getshape(int x, int y) const
 			return aShape;
 
 		}
+	}	
+	return nullptr;
+}
+
+
+void Graph::CopyShape()
+{
+	/*Clipboard.clear();
+	for (shape* aShape : shapesList) {
+		if (aShape->IsSelected())
+		{
+			Clipboard.push_back(aShape);
+		}
+	}*/
+	Scramble();
+}
+
+void Graph::oppPasteShape()
+{
+	for (shape* aShape : Clipboard) {
+		if (aShape)
 	}
 	for (shape* aShape : DuplicateList) {
 		if (aShape->ClickedInside(x, y))
@@ -175,13 +196,13 @@ void Graph::load(ifstream& inputfile, GUI* pUI, Graph* pGr)
 			p->Load(inputfile);
 			Addshape(p);
 		}
-		else if (type == "RegPoly")
+		/*else if (type == "RegPoly")
 		{
 			p = new RegPolygon();
 			p->Load(inputfile);
 			Addshape(p);
 
-		}
+		}*/
 		else if (type =="Square")
 		{
 			p = new Square();
@@ -536,6 +557,42 @@ void Graph::Match(GUI* pUI,Graph* pGr)
 			}
 			}
 		
+	}
+}
+
+void Graph::HideAShape(GUI* pGUI) const
+{
+	for (shape* aShape : shapesList) {
+		if (aShape->getHideorNot())
+		{
+			aShape->Hide(pGUI);
+		}
+	}
+}
+
+void Graph::unHideAShape(GUI* pGUI) const
+{
+	for (shape* aShape : shapesList) {
+		if (aShape->getHideorNot()==false)
+		{
+			aShape->Hide(pGUI);
+		}
+	}
+}
+
+void Graph::Scramble()
+{
+	srand(time(0));
+	
+	int dx, dy;
+	
+	for (int i = 0; i < shapesList.size(); i++) {
+		
+		dy = 350 + (rand() % 350);
+		dx = 250 + (rand() % 1000);
+		cout <<"   X == " << dx << "   Y ===  " << dy << endl;
+		if (Getshape(dx, dy) == nullptr)
+			shapesList[i]->ScrambleShape(dx, dy);
 	}
 }
 

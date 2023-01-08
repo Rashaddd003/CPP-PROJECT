@@ -15,6 +15,9 @@ class shape
 protected:
 	int ID;		//Each shape has an ID
 	GfxInfo ShpGfxInfo;	//shape graphis info
+	bool ImagePresent = false;
+	bool Hidden = false;	
+	/// Add more parameters if needed.  OK!
 	
 	/// Add more parameters if needed.
 
@@ -34,6 +37,15 @@ public:
 	void ChngDrawClr(color Dclr);	//changes the shape's drawing color
 	void ChngFillClr(color Fclr);	//changes the shape's filling color
 	void setSaved();
+	void setImagePresent();
+	void setHideorNot(bool t);
+	bool getImagePresentState();
+	bool getHideorNot();
+	virtual void Stick(GUI* pGUI);
+	virtual void Hide(GUI* pGUI)=0;
+	bool IsSaved();
+	virtual shape* PasteShape();
+	virtual void ScrambleShape(double shiftx, double shifty);
 	bool IsSaved();
 	///The following functions should be supported by the shape class
 	///It should be overridden by each inherited shape
@@ -48,6 +60,8 @@ public:
 	virtual void Load(ifstream &Infile) = 0;	//Load the shape parameters to the file
 	virtual void Resize(double) = 0;
 	virtual void Rotate() = 0;
+	virtual int GetMaxX() = 0;
+	virtual int GetMaxY() = 0;
 	virtual void Drag(int SHIFTx,int SHIFTy) = 0;
 	virtual Point Shift1() = 0;
 	virtual Point Shift2() = 0;
