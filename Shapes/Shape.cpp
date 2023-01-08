@@ -44,11 +44,27 @@ void shape::setImagePresent()
 	ImagePresent = true;
 }
 
+<<<<<<< Updated upstream
+=======
+void shape::setHideorNot(bool tf)
+{
+	Hidden = tf;
+}
+
+>>>>>>> Stashed changes
 bool shape::getImagePresentState()
 {
 	return ImagePresent;
 }
 
+<<<<<<< Updated upstream
+=======
+bool shape::getHideorNot()
+{
+	return Hidden;
+}
+
+>>>>>>> Stashed changes
 void shape::Stick(GUI* pGUI)
 {
 }

@@ -296,14 +296,44 @@ void Graph::StickingImage(GUI* pGUI) const
 {
 	for (shape* aShape : shapesList) {
 		if (aShape->getImagePresentState())
+<<<<<<< Updated upstream
+		{
+			aShape->Stick(pGUI);
+=======
 		{
 			aShape->Stick(pGUI);
 		}
 	}
 }
 
+void Graph::HideAShape(GUI* pGUI) const
+{
+	for (shape* aShape : shapesList) {
+		if (aShape->getHideorNot())
+		{
+			aShape->Hide(pGUI);
+>>>>>>> Stashed changes
+		}
+	}
+}
+
+<<<<<<< Updated upstream
 void Graph::Scramble()
 {
+=======
+void Graph::unHideAShape(GUI* pGUI) const
+{
+	for (shape* aShape : shapesList) {
+		if (aShape->getHideorNot()==false)
+		{
+			aShape->Hide(pGUI);
+		}
+	}
+}
+
+void Graph::Scramble()
+{
+>>>>>>> Stashed changes
 	srand(time(0));
 	
 	int dx, dy;
