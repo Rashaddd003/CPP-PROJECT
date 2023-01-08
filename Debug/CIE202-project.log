@@ -1,6 +1,0 @@
-﻿cl : command line  warning D9035: option 'Gm' has been deprecated and will be removed in a future release
-  Graph.cpp
-C:\Users\Silex\Desktop\CPPProject\CPP-PROJECT\Shapes\Graph.cpp(307,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\Silex\Desktop\CPPProject\CPP-PROJECT\Shapes\Graph.cpp(311,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Silex\Desktop\CPPProject\CPP-PROJECT\Shapes\Graph.cpp(211): warning C4715: 'Graph::CanExit': not all control paths return a value
-  CIE202-project.vcxproj -> C:\Users\Silex\Desktop\CPPProject\CPP-PROJECT\Debug\CIE202-project.exe
