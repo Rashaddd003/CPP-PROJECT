@@ -65,7 +65,7 @@ void Graph::DeleteShapeFromList()
 			if (shapesList[i]->IsGrouped()) {
 				for (int i = 0; i < shapesList.size(); i++) {
 					if (shapesList[i]->IsGrouped()) {
-						SelectaShape(shapesList[i], BLUE);
+						//SelectaShape(shapesList[i], BLUE);
 						shapesList.erase(shapesList.begin() + i);
 					}
 				}
@@ -73,6 +73,7 @@ void Graph::DeleteShapeFromList()
 			SelectaShape(shapesList[i], BLUE);
 			DeletedshapesList.push_back(shapesList[i]); //store deleted shape
 			shapesList.erase(shapesList.begin()+i); //delete &shapePointer;
+			
 		}
 	}
 }
@@ -269,6 +270,7 @@ void Graph::dragShape(GUI* pUI, Graph* pGr)
 	int iXOld = 0;
 	int iYOld = 0;
 	bool first = false;
+
 	do {
 		int SHIFTx = 0; int SHIFTy = 0;
 		if (bDragging == false ) {
@@ -289,6 +291,8 @@ void Graph::dragShape(GUI* pUI, Graph* pGr)
 				iXOld = iX;
 				iYOld = iY;
 				first = true;
+				predrag.x = iXOld;
+				predrag.y = iYOld;
 			}
 			else {
 				if (iX != iXOld || iY != iYOld) {
@@ -300,8 +304,10 @@ void Graph::dragShape(GUI* pUI, Graph* pGr)
 					{
 						if (shapesList[i]->IsSelected())
 						{
-
+							postdrag.x = iX;
+							postdrag.y = iY;
 							shapesList[i]->Drag(SHIFTx, SHIFTy);
+							draggedshape = shapesList[i];
 							pGr->Draw(pUI);
 							//Addshape(shapesList[i]);
 							x++;
@@ -354,6 +360,10 @@ void Graph::Undo()
 		LastOperation.erase(LastOperation.begin() + LastOperation.size() - 1);
 		undoOperations.push_back("Resize");
 	}
+	else if (LastOperation[LastOperation.size() - 1] == "Drag" && LastOperation.size() != 0) {
+		draggedshape->Drag(predrag.x - postdrag.x,  predrag.y- postdrag.y);
+		undoOperations.push_back("Drag");
+	}
 }
 
 void Graph::Redo()
@@ -371,6 +381,9 @@ void Graph::Redo()
 		shape* newshape = resizeagain((ResizedShapesUndo[ResizedShapesUndo.size() - 1]), (LastUndoResize[LastUndoResize.size() - 1]));
 		Addshape(newshape);
 		LastOperation.push_back("Resize");
+	}
+	else if (undoOperations[undoOperations.size() - 1] == "Drag" && undoOperations.size() != 0) {
+		draggedshape->Drag(postdrag.x - predrag.x, postdrag.y - predrag.y);
 	}
 }
 
