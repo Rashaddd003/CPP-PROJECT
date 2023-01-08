@@ -22,6 +22,7 @@ private:
 	vector <double> LastUndoResize;
 	vector <shape*> ResizedShapes; //container to the resized shapes
 	shape* selectedShape;	//pointer to the currently selected shape
+	vector <shape*> Clipboard; //a container to hold all copied shapes
 
 
 	
@@ -48,4 +49,10 @@ public:
 	void Match(GUI* pUI,Graph* pGr );
 	Point Matchcheck(Point x);
 	void GroupShapes(GUI* pUI);
+	void CopyShape();
+	void oppPasteShape();
+	void StickingImage(GUI* pGUI) const;
+	void HideAShape(GUI* pGUI) const;
+	void unHideAShape(GUI* pGUI) const;
+	void Scramble();
 };

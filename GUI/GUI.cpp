@@ -110,6 +110,9 @@ operationType GUI::GetUseroperation() const
 			case ICON_UNDO: return UNDO;
 			case ICON_REDO: return REDO;
 			case ICON_GROUP: return GROUP;
+			case ICON_Stick: return Stick;
+			case ICON_Copy: return Copy;
+			case ICON_Paste: return Paste;
 			case ICON_PALETTE: if (x > 630 & x < (630 + 10))
 			{
 				return COLOR_RED;
@@ -262,6 +265,9 @@ void GUI::CreateDrawToolBar()
 	MenuIconImages[ICON_UNDO] = "images\\MenuIcons\\Menu_Undo.jpg";
 	MenuIconImages[ICON_REDO] = "images\\MenuIcons\\Menu_Redo.jpg";
 	MenuIconImages[ICON_GROUP] = "images\\MenuIcons\\Menu_group.jpg";
+	MenuIconImages[ICON_Copy] = "images\\MenuIcons\\Copy.jpg";
+	MenuIconImages[ICON_Paste] = "images\\MenuIcons\\Paste.jpg";
+	MenuIconImages[ICON_Stick] = "images\\MenuIcons\\Sticker.jpg";
 
 	
 
@@ -471,7 +477,10 @@ void GUI::DrawPolygon(vector<int>  xx, vector<int> yy, int vertices, GfxInfo Pol
 
 }
 
-
+void GUI::StickImage(string PathOfImage, Point Pointt, int WW, int LL) const
+{
+	pWind->DrawImage(PathOfImage, Pointt.x, Pointt.y, WW, LL);
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////
 GUI::~GUI()

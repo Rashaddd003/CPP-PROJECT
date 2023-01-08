@@ -35,6 +35,8 @@ public:
 	void ChngFillClr(color Fclr);	//changes the shape's filling color
 	void setSaved();
 	bool IsSaved();
+	bool Hidden = false;
+	bool ImagePresent = false;
 	///The following functions should be supported by the shape class
 	///It should be overridden by each inherited shape
 
@@ -53,7 +55,16 @@ public:
 	virtual Point Shift2() = 0;
 	virtual shape* duplicate()=0;
 
-	
+	virtual shape* PasteShape() { return nullptr; }
+	virtual void Stick(GUI* pGUI) = 0;
+	virtual void ScrambleShape(double shiftx, double shifty) =0;
+	virtual int GetMaxX() = 0;
+	virtual int GetMaxY()  = 0;
+	virtual void Hide(GUI* pGUI) = 0;
+	void setImagePresent();
+	void setHideorNot(bool t);
+	bool getImagePresentState();
+	bool getHideorNot();
 	//virtual void PrintInfo(Output* pOut) = 0;	//print all shape info on the status bar
 };
 

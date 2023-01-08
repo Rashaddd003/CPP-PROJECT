@@ -31,6 +31,9 @@ enum operationType //The operations supported (you can add more if needed)
 	UNDO,
 	REDO,
 	GROUP,
+	Stick,
+	Copy,
+	Paste,
 	DUPLE,
 	MATCH,
 	SEND_BACK,		//Send a shape to the back of all shapes

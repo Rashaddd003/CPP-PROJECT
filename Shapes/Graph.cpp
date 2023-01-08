@@ -573,3 +573,70 @@ void Graph::GroupShapes(GUI* pUI)
 	}
 }
 
+void Graph::StickingImage(GUI* pGUI) const
+{
+	for (shape* aShape : shapesList) {
+		if (aShape->getImagePresentState())
+		{
+			aShape->Stick(pGUI);
+		}
+	}
+}
+
+void Graph::HideAShape(GUI* pGUI) const
+{
+	for (shape* aShape : shapesList) {
+		if (aShape->getHideorNot())
+		{
+			aShape->Hide(pGUI);
+		}
+	}
+}
+
+void Graph::unHideAShape(GUI* pGUI) const
+{
+	for (shape* aShape : shapesList) {
+		if (aShape->getHideorNot() == false)
+		{
+			aShape->Hide(pGUI);
+		}
+	}
+}
+
+void Graph::Scramble()
+{
+	srand(time(0));
+
+	int dx, dy;
+
+	for (int i = 0; i < shapesList.size(); i++) {
+
+		dy = 350 + (rand() % 350);
+		dx = 250 + (rand() % 1000);
+		cout << "   X == " << dx << "   Y ===  " << dy << endl;
+		if (Getshape(dx, dy) == nullptr)
+			shapesList[i]->ScrambleShape(dx, dy);
+	}
+} 
+
+void Graph::CopyShape()
+{
+	Clipboard.clear();
+	for (shape* aShape : shapesList) {
+		if (aShape->IsSelected())
+		{
+			Clipboard.push_back(aShape);
+		}
+
+	}
+}
+
+void Graph::oppPasteShape()
+	{
+		for (shape* aShape : Clipboard) {
+			if (aShape)
+			{
+				shapesList.push_back(aShape->PasteShape());
+			}
+		}
+	}

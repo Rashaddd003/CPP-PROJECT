@@ -58,6 +58,9 @@ class GUI
 		ICON_UNDO,
 		ICON_REDO,
 		ICON_GROUP,
+		ICON_Copy,
+		ICON_Paste,
+		ICON_Stick,
 		
 		//TODO: Add more icons names here
 
@@ -142,7 +145,7 @@ public:
 	void changeCrntFillColor(color);
 
 	const buttonstate getIsClicked(int &iX, int &iY);
-
+	void StickImage(string, Point, int, int) const;
 	~GUI();
 };
 

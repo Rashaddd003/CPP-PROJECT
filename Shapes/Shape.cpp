@@ -55,3 +55,22 @@ bool shape::IsSaved()
 	return ShpGfxInfo.isSaved;
 }
 
+void shape::setImagePresent()
+{
+	ImagePresent = true;
+}
+
+void shape::setHideorNot(bool tf)
+{
+	Hidden = tf;
+}
+
+bool shape::getImagePresentState()
+{
+	return ImagePresent;
+}
+
+bool shape::getHideorNot()
+{
+	return Hidden;
+}

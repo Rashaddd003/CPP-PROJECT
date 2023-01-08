@@ -179,3 +179,66 @@ shape* RegPolygon::duplicate()
 }
 
 
+int RegPolygon::getSides()
+{
+	return sides;
+}
+shape* RegPolygon::PasteShape()
+{
+	Point C1, St1;
+	C1.x = center.x + 20;
+	C1.y = center.y - 20;
+	St1.x = StPt.x + 20;
+	St1.y = StPt.y - 20;
+	return new RegPolygon(C1, St1, getSides(), getShpGfx());
+}
+void RegPolygon::Stick(GUI* pGUI)
+{
+	double radiuss = sqrt(pow((StPt.x - center.x), 2) + pow((StPt.y - center.y), 2));
+	Point P;
+	P.x = center.x - radiuss;
+	P.y = center.y - radiuss;
+	int width = radiuss * 2;
+	int length = width;
+	string name = "images\\MenuIcons\\idkk.jpg";
+	pGUI->StickImage(name, P, width, length);
+
+
+}
+void RegPolygon::Hide(GUI* pGUI)
+{
+
+	if (Hidden)
+	{
+		double radiuss = sqrt(pow((StPt.x - center.x), 2) + pow((StPt.y - center.y), 2));
+		Point P;
+		P.x = center.x - radiuss;
+		P.y = center.y - radiuss;
+		int width = radiuss * 2;
+		int length = width;
+		string name = "images\\MenuIcons\\HideCard.jpg";
+		pGUI->StickImage(name, P, width, length);
+	}
+
+}
+void RegPolygon::ScrambleShape(double shiftx, double shifty)
+{
+	int Dx = Vertexx[0] - shiftx;
+	int Dy = Vertexy[0] - shifty;
+	Vertexx[0] = shiftx;
+	Vertexy[0] = shifty;
+	for (int i = 1; i < sides; i++) {
+		Vertexx[i] -= Dx;
+		Vertexy[i] -= Dy;
+	}
+}
+
+int RegPolygon::GetMaxX()
+{
+	return max(center.x, StPt.x);
+}
+
+int RegPolygon::GetMaxY()
+{
+	return max(center.y, StPt.y);
+}

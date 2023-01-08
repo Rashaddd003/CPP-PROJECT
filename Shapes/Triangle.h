@@ -24,5 +24,11 @@ public:
 	virtual Point Shift2();
 	Point Shift3();
 	virtual shape* duplicate();
+	virtual shape* PasteShape() override;
+	virtual void Stick(GUI* pGUI) override;
+	virtual void ScrambleShape(double shiftx, double shifty) override;
+	virtual int GetMaxX() override;
+	virtual int GetMaxY() override;
+	virtual void Hide(GUI* pGUI) override;
 
 };
