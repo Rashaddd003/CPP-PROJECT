@@ -6,8 +6,8 @@ GUI::GUI()
 	//Initialize user interface parameters
 	InterfaceMode = MODE_DRAW;
 
-	width = 1600;
-	height = 700;
+	width = 1910;
+	height = 900;
 	wx = 5;
 	wy = 5;
 
@@ -109,6 +109,7 @@ operationType GUI::GetUseroperation() const
 			case ICON_DRAG: return MOVE;
 			case ICON_UNDO: return UNDO;
 			case ICON_REDO: return REDO;
+			case ICON_GROUP: return GROUP;
 			case ICON_PALETTE: if (x > 630 & x < (630 + 10))
 			{
 				return COLOR_RED;
@@ -260,6 +261,8 @@ void GUI::CreateDrawToolBar()
 	MenuIconImages[ICON_DRAG] = "images\\MenuIcons\\Drag.jpg";
 	MenuIconImages[ICON_UNDO] = "images\\MenuIcons\\Menu_Undo.jpg";
 	MenuIconImages[ICON_REDO] = "images\\MenuIcons\\Menu_Redo.jpg";
+	MenuIconImages[ICON_GROUP] = "images\\MenuIcons\\Menu_Save.jpg";
+
 	
 
 	//TODO: Prepare images for each menu icon and add it to the list

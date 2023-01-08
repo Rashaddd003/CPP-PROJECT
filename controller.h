@@ -27,6 +27,7 @@
 #include "operations/opDrag.h"
 #include "operations/opDuplicate.h"
 #include "operations/opMatch.h"
+#include "operations/opGroupShapes.h"
 
 class operation; //forward declaration
 

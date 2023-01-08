@@ -40,6 +40,7 @@ void opAddRect::Execute()
 
 	RectGfxInfo.isFilled = pUI->isFilled();	//default is not filled
 	RectGfxInfo.isSelected = false;	//defualt is not selected
+	RectGfxInfo.isGrouped = false;
 
 
 	//Create a rectangle with the above parameters

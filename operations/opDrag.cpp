@@ -13,5 +13,5 @@ void opDrag::Execute()
 	Graph* pGr = pControl->getGraph();
 
 	pGr->dragShape(pUI,pGr);
-	pGr->Addoperation("Drag");
+	//pGr->Addoperation("Drag");
 }

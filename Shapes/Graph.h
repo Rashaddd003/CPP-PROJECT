@@ -47,4 +47,5 @@ public:
 	void Redo();
 	void Match(GUI* pUI,Graph* pGr );
 	Point Matchcheck(Point x);
+	void GroupShapes(GUI* pUI);
 };

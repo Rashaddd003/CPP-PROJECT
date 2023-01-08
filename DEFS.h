@@ -30,6 +30,7 @@ enum operationType //The operations supported (you can add more if needed)
 	ROTATE,//Rotate a shape(s)
 	UNDO,
 	REDO,
+	GROUP,
 	DUPLE,
 	MATCH,
 	SEND_BACK,		//Send a shape to the back of all shapes

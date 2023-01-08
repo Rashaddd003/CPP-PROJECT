@@ -56,27 +56,27 @@ void Graph::DrawDupl(GUI* pUI) const
 }
 void Graph::DeleteShapeFromList()
 {
-	int size, count;
+	int size;
 	size = shapesList.size();
-	count = 0;
-	for (auto &shapePointer : shapesList)
+	for (int i = 0; i < shapesList.size(); i++)
 	{
-		
-		if (shapePointer->IsSelected())
+		if (shapesList[i]->IsSelected())
 		{
-			SelectaShape(shapePointer, BLUE);
-			//shape* newpointertoshape = shapePointer;
-			DeletedshapesList.push_back(shapePointer); //store deleted shape
-			shapesList.erase(shapesList.begin()+count); //delete &shapePointer;
-			count--;
+			if (shapesList[i]->IsGrouped()) {
+				for (int i = 0; i < shapesList.size(); i++) {
+					if (shapesList[i]->IsGrouped()) {
+						SelectaShape(shapesList[i], BLUE);
+						shapesList.erase(shapesList.begin() + i);
+					}
+				}
+			}
+			SelectaShape(shapesList[i], BLUE);
+			DeletedshapesList.push_back(shapesList[i]); //store deleted shape
+			shapesList.erase(shapesList.begin()+i); //delete &shapePointer;
 		}
-		count++;
 	}
 }
-////Point Graph::Matchcheck(Point x)
-////{
-////
-////}
+
 
 shape* Graph::Getshape(int x, int y) const
 {
@@ -217,14 +217,25 @@ void Graph::resizeShape(double x)
 	{
 		if (shapesList[i]->IsSelected())
 		{
-			//shape* newpointer = shapesList[i];  
-			ResizedShapes.push_back(shapesList[i]); //store shape
-			shapesList[i]->Resize(x);
-			Addshape(shapesList[i]);
-			LastResize.push_back(x);
+			if (shapesList[i]->IsGrouped()) {
+				for (int i = 0; i < shapesList.size(); i++) {
+					if (shapesList[i]->IsGrouped()) {
+						shapesList[i]->Resize(x);
+					}
+				}
+			}
+			else {
+				//shape* newpointer = shapesList[i];  
+				ResizedShapes.push_back(shapesList[i]); //store shape
+				shapesList[i]->Resize(x);
+				//Addshape(shapesList[i]);
+				LastResize.push_back(x);
+			}
+			}
 		}
 	}
-}
+
+
 
 shape* Graph::resizeagain(shape* s, double x) {
 	s->Resize(x);
@@ -242,7 +253,7 @@ void Graph::RotateShape()
 		{
 			shapesList[i]->Rotate();
 			SelectaShape(shapesList[i], BLUE);
-			Addshape(shapesList[i]);
+			//Addshape(shapesList[i]);
 		}
 	}
 }
@@ -362,6 +373,11 @@ void Graph::Redo()
 		LastOperation.push_back("Resize");
 	}
 }
+
+
+
+
+
 void Graph::Duplicate()
 {
 	for (auto shapePointer : shapesList)
@@ -520,6 +536,40 @@ void Graph::Match(GUI* pUI,Graph* pGr)
 			}
 			}
 		
+	}
+}
+
+
+
+
+void Graph::GroupShapes(GUI* pUI)
+{
+	int size;
+	string is;
+	size = shapesList.size();
+	for (int i = 0; i < size; i++)
+	{
+		if (shapesList[i]->IsSelected() && shapesList[i]->IsGrouped()==false)
+		{
+			shapesList[i]->setGrouped(true);
+			is = "grouped";
+		}
+		else if (shapesList[i]->IsSelected() && shapesList[i]->IsGrouped() == true) {
+			for (int i = 0; i < size; i++)
+			{
+				shapesList[i]->setGrouped(false);
+				is = "notgrouped";
+			}
+		}
+	}
+	if (is == "grouped") {
+		pUI->PrintMessage("shapes have been grouped");
+	}
+	else if (is == "notgrouped") {
+		pUI->PrintMessage("shapes have been ungrouped");
+	}
+	else {
+		pUI->PrintMessage("you haven't selected any shapes");
 	}
 }
 
