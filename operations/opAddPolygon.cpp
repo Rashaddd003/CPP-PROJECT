@@ -41,6 +41,7 @@ void opAddPolygon::Execute()
 
 	PolyGfxInfo.isFilled = pUI->isFilled();	//default is not filled
 	PolyGfxInfo.isSelected = false;	//defualt is not selected
+	PolyGfxInfo.isGrouped = false;
 
 
 	//Create a rectangle with the above parameters

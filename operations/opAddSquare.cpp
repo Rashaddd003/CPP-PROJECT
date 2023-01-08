@@ -38,6 +38,7 @@ void opAddSquare::Execute()
 
 	SquareGfxInfo.isFilled = pUI->isFilled();	//default is not filled
 	SquareGfxInfo.isSelected = false;	//defualt is not selected
+	SquareGfxInfo.isGrouped = false;
 
 
 	//Create a square with the above parameters

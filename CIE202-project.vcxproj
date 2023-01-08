@@ -179,6 +179,7 @@
     <ClCompile Include="operations\opDrag.cpp" />
     <ClCompile Include="operations\opDuplicate.cpp" />
     <ClCompile Include="operations\opExit.cpp" />
+    <ClCompile Include="operations\opGroupShapes.cpp" />
     <ClCompile Include="operations\opLoad.cpp" />
     <ClCompile Include="operations\opMatch.cpp" />
     <ClCompile Include="operations\opRedo.cpp" />
@@ -235,6 +236,7 @@
     <ClInclude Include="operations\operation.h" />
     <ClInclude Include="operations\opAddPolygon.h" />
     <ClInclude Include="operations\opExit.h" />
+    <ClInclude Include="operations\opGroupShapes.h" />
     <ClInclude Include="operations\opLoad.h" />
     <ClInclude Include="operations\opMatch.h" />
     <ClInclude Include="operations\opRedo.h" />

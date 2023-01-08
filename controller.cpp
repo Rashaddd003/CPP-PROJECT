@@ -102,6 +102,10 @@ operation* controller::createOperation(operationType OpType)
 			pOp = new opRedo(this);
 
 			break;
+		case GROUP:
+			pOp = new opGroupShapes(this);
+
+			break;
 		case STATUS:	//a click on the status bar ==> no operation
 			break;
 	}

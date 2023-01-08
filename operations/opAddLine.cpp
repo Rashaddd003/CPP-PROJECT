@@ -37,6 +37,7 @@ void opAddLine::Execute()
 	LineGfxInfo.BorderWdth = pUI->getCrntPenWidth();
 
 	LineGfxInfo.isSelected = false;	//defualt is not selected
+	LineGfxInfo.isGrouped = false;
 
 
 	//Create a rectangle with the above parameters

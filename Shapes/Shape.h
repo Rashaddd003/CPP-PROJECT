@@ -25,7 +25,9 @@ public:
 	shape(GfxInfo shapeGfxInfo);
 	virtual ~shape() {};
 	void SetSelected(bool s);	//select/unselect the shape
+	void setGrouped(bool);
 	bool IsSelected() const;	//check whether fig is selected
+	bool IsGrouped() const;
 	GfxInfo getShpGfx()const;
 	virtual void Draw(GUI* pUI) const  = 0 ;		//Draw the shape
 	virtual bool ClickedInside(int x, int y) const;

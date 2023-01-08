@@ -13,5 +13,4 @@ void opDuplicate::Execute()
 	Graph* pGr = pControl->getGraph();
 
 	pGr->Duplicate();
-	pGr->Addoperation("Duplicate");
 }

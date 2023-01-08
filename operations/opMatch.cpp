@@ -13,5 +13,4 @@ void opMatch::Execute()
 	Graph* pGr = pControl->getGraph();
 ;
 	pGr->Match(pUI,pGr);
-	pGr->Addoperation("Match");
 }

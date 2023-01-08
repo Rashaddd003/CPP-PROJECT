@@ -42,6 +42,7 @@ void opAddCircle::Execute()
 	CircGfxInfo.isFilled = pUI->isFilled();
 	//default is not filled
 	CircGfxInfo.isSelected = false;	//defualt is not selected
+	CircGfxInfo.isGrouped = false;
 
 	//Create a rectangle with the above parameters
 	Circle* R = new Circle(P1, P2, CircGfxInfo);
