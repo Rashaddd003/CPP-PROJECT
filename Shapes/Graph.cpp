@@ -486,16 +486,14 @@ void Graph::Match(GUI* pUI,Graph* pGr)
 			if (shapesList[i] == S)
 			{
 				counts=i;
-				
-
+				shapesList[i]->setHideorNot(false);
 			}
 		}
 		for (int i = 0; i < DuplicateList.size(); i++) {
 			if (DuplicateList[i] == S)
 			{
 				counts = i;
-
-
+				DuplicateList[i]->setHideorNot(false);
 			}
 		}
 		pUI->PrintMessage("choose 2nd shape");
@@ -505,7 +503,8 @@ void Graph::Match(GUI* pUI,Graph* pGr)
 		{
 
 			pUI->PrintMessage("No shape selected");
-
+			S->setHideorNot(true);
+			S->Hide(pUI);
 		}
 		else if (S2 != S)
 		{
@@ -513,7 +512,7 @@ void Graph::Match(GUI* pUI,Graph* pGr)
 				if (shapesList[i] == S2)
 				{
 					countd = i;
-
+					shapesList[i]->setHideorNot(false);
 
 				}
 			}
@@ -521,7 +520,7 @@ void Graph::Match(GUI* pUI,Graph* pGr)
 				if (DuplicateList[i] == S2)
 				{
 					countd = i;
-
+					DuplicateList[i]->setHideorNot(false);
 
 				}
 			}
@@ -533,7 +532,22 @@ void Graph::Match(GUI* pUI,Graph* pGr)
 				pUI->PrintMessage("Score=");
 				Pause(400);
 				pUI->PrintMessage(to_string(score));
-
+				for (int i = 0; i < shapesList.size(); i++) {
+					if (shapesList[i] == S2)
+					{
+						shapesList.erase(shapesList.begin()+i);
+						DuplicateList.erase(DuplicateList.begin() + i);
+					}
+					if (DuplicateList[i] == S2)
+					{
+						DuplicateList.erase(DuplicateList.begin() + i);
+						shapesList.erase(shapesList.begin() + i);
+					}
+				}
+				if (shapesList.size() == 0) {
+					pUI->PrintMessage("Mabrok");
+					exit(0);
+				}
 			}
 			else
 			{
@@ -543,9 +557,10 @@ void Graph::Match(GUI* pUI,Graph* pGr)
 				pUI->PrintMessage("(-1) Score=");
 				Pause(450);
 				pUI->PrintMessage(to_string(score));
-
-
-
+				S->setHideorNot(true);
+				S2->setHideorNot(true);
+				S->Hide(pUI);
+				S2->Hide(pUI);
 			}
 			}
 		
@@ -630,7 +645,29 @@ void Graph::Scramble()
 		if (Getshape(dx, dy) == nullptr)
 			shapesList[i]->ScrambleShape(dx, dy);
 	}
-} 
+}
+void Graph::Start(GUI* pUI, Graph* pGrp)
+{
+	pUI->PrintMessage("Welcome");
+	if (shapesList.size() <= 5) {
+		pGrp->Duplicate();
+		pGrp->Scramble();
+		Pause(50);
+		pUI->PrintMessage("Get Ready!!!!");
+		for (int i = 0; i < shapesList.size(); i++) {
+			shapesList[i]->setHideorNot(true);
+			DuplicateList[i]->setHideorNot(true);
+			shapesList[i]->Hide(pUI);
+			DuplicateList[i]->Hide(pUI);
+		}
+		while(1){
+		pGrp->Match(pUI, pGrp);
+		}
+	}
+
+
+}
+
 
 void Graph::CopyShape()
 {

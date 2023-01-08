@@ -80,6 +80,7 @@ class GUI
 		ICONSELECT,
 		DrawMode,
 		Match,
+		ICONStart,
 		Duple,
 		ICONEXIT,
 		PLAY_ICON_COUNT		//no. of menu icons ==> This should be the last line in this enum

@@ -56,4 +56,5 @@ public:
 	void HideAShape(GUI* pGUI) const;
 	void unHideAShape(GUI* pGUI) const;
 	void Scramble();
+	void Start(GUI*, Graph*);
 };

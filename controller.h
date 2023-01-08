@@ -31,7 +31,7 @@
 #include "operations/opStickImage.h"
 #include "operations/opCopy.h"
 #include "operations/opPaste.h"
-
+#include "operations/opStartGame.h"
 
 
 

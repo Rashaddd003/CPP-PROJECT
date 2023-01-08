@@ -155,11 +155,11 @@ Point Rect::Shift2()
 shape* Rect::duplicate()
 {
 	Point p1;
-	p1.x = Corner1.x + 60;
+	p1.x = Corner1.x + 150;
 	//p2.x = point2.x + 5;
 	p1.y = Corner1.y;
 	Point  p2;
-	p2.x = Corner2.x + 60;
+	p2.x = Corner2.x + 150;
 	//p2.x = point2.x + 5;
 	p2.y = Corner2.y;
 

@@ -179,6 +179,7 @@ operationType GUI::GetUseroperation() const
 			case ICONEXIT: return EXIT;
 			case Duple: return DUPLE;
 			case Match: return MATCH;
+			case ICONStart: return Start;
 			default: return EMPTY;	//A click on empty place in desgin toolbar
 			}
 		}
@@ -297,6 +298,7 @@ void GUI::CreatePlayToolBar()
 	MenuIconImages[ICONEXIT] = "images\\MenuIcons\\Menu_Exit.jpg";
 	MenuIconImages[Duple] = "images\\MenuIcons\\Duplicate.jpg";
 	MenuIconImages[Match] = "images\\MenuIcons\\Match.jpg";
+	MenuIconImages[ICONStart] = "images\\MenuIcons\\idkk.jpg";
 	for (int i = 0; i < PLAY_ICON_COUNT; i++)
 		pWind->DrawImage(MenuIconImages[i], i * MenuIconWidth, 0, MenuIconWidth, ToolBarHeight);
 

@@ -189,6 +189,7 @@
     <ClCompile Include="operations\opRotateShape.cpp" />
     <ClCompile Include="operations\opSave.cpp" />
     <ClCompile Include="operations\opSelectShape.cpp" />
+    <ClCompile Include="operations\opStartGame.cpp" />
     <ClCompile Include="operations\opStickImage.cpp" />
     <ClCompile Include="operations\opToDrawMode.cpp" />
     <ClCompile Include="operations\opToPlayMode.cpp" />
@@ -249,6 +250,7 @@
     <ClInclude Include="operations\opRotateShape.h" />
     <ClInclude Include="operations\opSave.h" />
     <ClInclude Include="operations\opSelectShape.h" />
+    <ClInclude Include="operations\opStartGame.h" />
     <ClInclude Include="operations\opStickImage.h" />
     <ClInclude Include="operations\opToDrawMode.h" />
     <ClInclude Include="operations\opToPlayMode.h" />
