@@ -115,6 +115,9 @@ operation* controller::createOperation(operationType OpType)
 		case Stick:
 			pOp = new opStickImage(this);
 			break;
+		case Start:
+			pOp = new opStartGame(this);
+			break;
 		case STATUS:	//a click on the status bar ==> no operation
 			break;
 	}

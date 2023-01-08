@@ -36,6 +36,7 @@ enum operationType //The operations supported (you can add more if needed)
 	Paste,
 	DUPLE,
 	MATCH,
+	Start,
 	SEND_BACK,		//Send a shape to the back of all shapes
 	BRNG_FRNT,		//Bring a shape to the front of all shapes
 	SAVE,	//Save the whole graph to a file
