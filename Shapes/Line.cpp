@@ -9,11 +9,21 @@ Line::Line(Point p1, Point p2, GfxInfo shapeGfxInfo) :shape(shapeGfxInfo)
 {
 	point1 = p1;
 	point2 = p2;
+	copyGFX = shapeGfxInfo;
+
 	type = "Line";
 }
 
 Line::~Line()
 {}
+
+Line::Line(const Line & lineo)
+{
+	this->point1.x = lineo.point1.x+5;
+	this->point2.x = lineo.point2.x + 5;
+	this->point1.y = lineo.point1.y + 5;
+	this->point2.y = lineo.point2.y + 5;
+}
 
 void Line::Draw(GUI* pUI) const
 {
@@ -47,17 +57,6 @@ bool Line::ClickedInside(int x, int y) const
 		if (x <= maxx && x >= minx && y > point1.y - 4 && y < point1.y + 4) { return true; }
 		else return false;
 	}
-}
-shape* Line::PasteShape()
-{
-	Point Point11, Point22;
-	Point11.x = point1.x + 20;
-	Point11.y = point1.y - 20;
-	Point22.x = point2.x + 20;
-	Point22.y = point2.y - 20;
-
-	return new Line(Point11, Point22, ShpGfxInfo);
-
 }
 void Line::Save(ofstream& OutFile)
 {
@@ -128,10 +127,6 @@ void Line::Resize(double x)
 	point2.y = point1.y + ((x) * (point2.y - point1.y));
 }
 
-void Line::Stick(GUI* pGUI)
-{
-}
-
 void Line::Rotate()
 {
 	Point center;
@@ -143,6 +138,63 @@ void Line::Rotate()
 	int swap1 = point2.x;
 	point2.x = -point2.y + center.x + center.y;
 	point2.y = swap1 - center.x + center.y;
+}
+
+void Line::Drag(int x,int y)
+{
+	int p2x; int p1x; int p2y; int p1y;
+	point1.x = point1.x + x;
+	point1.y = point1.y + y;
+	point2.x = point2.x + x;
+	point2.y = point2.y + y;
+	Point p1; Point p2;
+	/*p1.x = p1x;
+	p1.y = p1y;
+	p2.x = p2x;
+	p2.y = p2y;*/
+	//Line* R = new Line(p1, p2, copyGFX);
+	
+	//Get a pointer to the graph
+	
+
+	//Add the rectangle to the list of shapes
+	
+}
+
+Point Line::Shift1()
+{
+	Point p1;
+	p1.x = point1.x + 20;
+	//p2.x = point2.x + 5;
+	p1.y = point1.y ;
+	//p2.y = point2.y + 5;
+
+	return p1;
+}
+Point Line::Shift2()
+{
+	Point  p2;
+	p2.x = point2.x + 20;
+	//p2.x = point2.x + 5;
+	p2.y = point2.y;
+	//p2.y = point2.y + 5;
+
+	return p2;
+}
+
+shape* Line::duplicate()
+{
+
+	Point p1;
+	p1.x = point1.x + 60;
+	//p2.x = point2.x + 5;
+	p1.y = point1.y;
+	Point  p2;
+	p2.x = point2.x + 60;
+	//p2.x = point2.x + 5;
+	p2.y = point2.y;
+
+	return new Line(p1, p2, ShpGfxInfo);
 }
 
 

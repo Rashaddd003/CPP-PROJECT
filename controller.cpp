@@ -58,27 +58,25 @@ operation* controller::createOperation(operationType OpType)
 		case Draw_Square:
 			pOp = new opAddSquare(this);
 			break;
+		case DUPLE:
+			pOp = new opDuplicate(this);
+			break;
 		case SAVE:
 			pOp = new opSave(this);
 			break;
 		case LOAD:
 			pOp = new opLoad(this);
 			break;
-		case Copy:
-			pOp = new opCopy(this);
-			break;
-		case Paste:
-			pOp = new opPaste(this);
-			break;
 		case TO_PLAY:
 			pOp = new opToPlayMode(this);
+
 			break;
-		
+		case TO_DRAW:
+			pOp = new opToDrawMode(this);
+			break;
 		case EXIT:
 			pOp = new opExit(this);
-			break;
-		case Stick:
-			pOp = new opStickImage(this);
+			
 			break;
 
 		case RESIZE:
@@ -89,6 +87,13 @@ operation* controller::createOperation(operationType OpType)
 			pOp = new opRotateShape(this);
 
 			break;
+		case MOVE:
+			pOp = new opDrag(this);
+			break;
+		case MATCH:
+			pOp = new opMatch(this);
+			break;
+		
 		case UNDO:
 			pOp = new opUndo(this);
 

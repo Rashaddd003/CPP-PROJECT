@@ -8,7 +8,6 @@
 #include "../Shapes/Rect.h"
 #include "../Shapes/Triangle.h"
 #include "../Shapes/Line.h"
-#include "../controller.h"
 
 class opSelectShape : public operation
 {

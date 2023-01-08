@@ -50,12 +50,10 @@ class GUI
 		ICON_Save,
 		ICON_Load,
 		ICON_Select,
-		ICON_Copy,
-		ICON_Paste,
-		ICON_Stick,
 		ICON_PLAY,
 		ICON_RESIZE,
 		ICON_ROTATE,
+		ICON_DRAG,
 		ICON_UNDO,
 		ICON_REDO,
 		
@@ -73,9 +71,12 @@ class GUI
 		//If you want to change the menu icons order, change the order here
 
 		//TODO: Add more icons names here
-		ICONSELECT,
-		ICONEXIT,
 
+		ICONSELECT,
+		DrawMode,
+		Match,
+		Duple,
+		ICONEXIT,
 		PLAY_ICON_COUNT		//no. of menu icons ==> This should be the last line in this enum
 
 		
@@ -121,7 +122,7 @@ public:
 	void ClearToolBar() const;
 	void ClearStatusBar() const;	//Clears the status bar
 	void ClearDrawArea() const;	//Clears the drawing area
-	void StickImage(string , Point , int , int ) const;
+
 	// -- shapes Drawing functions
 	void DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo) const;  //Draw a rectangle
 	void DrawCircle(Point P1, Point P2, GfxInfo RectGfxInfo) const;  //Draw a circle
@@ -137,6 +138,8 @@ public:
 	int getCrntPenWidth() const;		//get current pen width
 	void changeCrntDrawColor(color);
 	void changeCrntFillColor(color);
+
+	const buttonstate getIsClicked(int &iX, int &iY);
 
 	~GUI();
 };

@@ -15,15 +15,15 @@ class shape
 protected:
 	int ID;		//Each shape has an ID
 	GfxInfo ShpGfxInfo;	//shape graphis info
-	bool ImagePresent = false;
-	/// Add more parameters if needed.  OK!
+	
+	/// Add more parameters if needed.
 
 public:
 	string type;
 
 	shape();
 	shape(GfxInfo shapeGfxInfo);
-	virtual ~shape() {}
+	virtual ~shape() {};
 	void SetSelected(bool s);	//select/unselect the shape
 	bool IsSelected() const;	//check whether fig is selected
 	GfxInfo getShpGfx()const;
@@ -32,11 +32,7 @@ public:
 	void ChngDrawClr(color Dclr);	//changes the shape's drawing color
 	void ChngFillClr(color Fclr);	//changes the shape's filling color
 	void setSaved();
-	void setImagePresent();
-	bool getImagePresentState();
-	virtual void Stick(GUI* pGUI);
 	bool IsSaved();
-	virtual shape* PasteShape();
 	///The following functions should be supported by the shape class
 	///It should be overridden by each inherited shape
 
@@ -50,6 +46,11 @@ public:
 	virtual void Load(ifstream &Infile) = 0;	//Load the shape parameters to the file
 	virtual void Resize(double) = 0;
 	virtual void Rotate() = 0;
+	virtual void Drag(int SHIFTx,int SHIFTy) = 0;
+	virtual Point Shift1() = 0;
+	virtual Point Shift2() = 0;
+	virtual shape* duplicate()=0;
+
 	
 	//virtual void PrintInfo(Output* pOut) = 0;	//print all shape info on the status bar
 };

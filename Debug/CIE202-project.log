@@ -1,11 +1,1 @@
-﻿cl : command line  warning D9035: option 'Gm' has been deprecated and will be removed in a future release
-  Triangle.cpp
-C:\Users\Silex\Desktop\CPPProject\CPP-PROJECT\Shapes\Triangle.cpp(119,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\Silex\Desktop\CPPProject\CPP-PROJECT\Shapes\Triangle.cpp(120,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\Silex\Desktop\CPPProject\CPP-PROJECT\Shapes\Triangle.cpp(121,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\Silex\Desktop\CPPProject\CPP-PROJECT\Shapes\Triangle.cpp(122,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\Silex\Desktop\CPPProject\CPP-PROJECT\Shapes\Triangle.cpp(132,8): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\Silex\Desktop\CPPProject\CPP-PROJECT\Shapes\Triangle.cpp(133,8): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\Silex\Desktop\CPPProject\CPP-PROJECT\Shapes\Triangle.cpp(134,12): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\Users\Silex\Desktop\CPPProject\CPP-PROJECT\Shapes\Triangle.cpp(135,13): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-  CIE202-project.vcxproj -> C:\Users\Silex\Desktop\CPPProject\CPP-PROJECT\Debug\CIE202-project.exe
+﻿  CIE202-project.vcxproj -> F:\Mohamed\Zewail City\cpp\PROJECT FINAL\CPP-PROJECT\Debug\CIE202-project.exe

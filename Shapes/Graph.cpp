@@ -13,6 +13,8 @@
 #include"..\Shapes\Square.h"
 #include "Shape.h"
 #include <iostream>
+#include "..\CMUgraphicsLib\auxil.h"	// where Pause is found
+
 Graph::Graph()
 {
 	selectedShape = nullptr;
@@ -41,13 +43,17 @@ void Graph::Addoperation(string x)
 void Graph::Draw(GUI* pUI) const
 {
 	pUI->ClearDrawArea();
-	for (auto shapePointer : shapesList) {
-		StickingImage(pUI);
+	for (auto shapePointer : shapesList)
 		shapePointer->Draw(pUI);
-
-	}
+	for (auto shapePointer : DuplicateList)
+		shapePointer->Draw(pUI);
 }
-
+void Graph::DrawDupl(GUI* pUI) const
+{
+	pUI->ClearDrawArea();
+	for (auto shapePointer : DuplicateList)
+		shapePointer->Draw(pUI);
+}
 void Graph::DeleteShapeFromList()
 {
 	int size, count;
@@ -67,42 +73,36 @@ void Graph::DeleteShapeFromList()
 		count++;
 	}
 }
-
+////Point Graph::Matchcheck(Point x)
+////{
+////
+////}
 
 shape* Graph::Getshape(int x, int y) const
 {
+	Point S;
+	int counts = 0;
+	int countd = 0;
 	//If a shape is found return a pointer to it.
 	//if this point (x,y) does not belong to any shape return NULL
 	for (shape* aShape : shapesList) {
 		if (aShape->ClickedInside(x, y))
 		{
+			counts++;
 			return aShape;
 
 		}
-	}	
+	}
+	for (shape* aShape : DuplicateList) {
+		if (aShape->ClickedInside(x, y))
+		{
+			countd++;
+			return aShape;
+
+		}
+	}
+
 	return nullptr;
-}
-
-
-void Graph::CopyShape()
-{
-	Clipboard.clear();
-	for (shape* aShape : shapesList) {
-		if (aShape->IsSelected())
-		{
-			Clipboard.push_back(aShape);
-		}
-	}
-}
-
-void Graph::oppPasteShape()
-{
-	for (shape* aShape : Clipboard) {
-		if (aShape)
-		{
-			shapesList.push_back(aShape->PasteShape());
-		}
-	}
 }
 
 void Graph::SelectaShape(shape* Selected, color oldColor)
@@ -247,6 +247,78 @@ void Graph::RotateShape()
 	}
 }
 
+void Graph::dragShape(GUI* pUI, Graph* pGr)
+{
+	int size;
+	size = shapesList.size();
+	bool bDragging = false;
+	int x = 0;
+	int iX = 0, iY = 0;
+
+	int iXOld = 0;
+	int iYOld = 0;
+	bool first = false;
+	do {
+		int SHIFTx = 0; int SHIFTy = 0;
+		if (bDragging == false ) {
+			bDragging = true;
+			
+			
+
+
+		}
+		else if (bDragging == true && pUI->getIsClicked(iX, iY) == BUTTON_DOWN) {
+			/*if (pUI->getIsClicked(iX, iY) == BUTTON_UP) {
+				bDragging = false;
+
+
+			}*/
+			if (first == false)
+			{
+				iXOld = iX;
+				iYOld = iY;
+				first = true;
+			}
+			else {
+				if (iX != iXOld || iY != iYOld) {
+					SHIFTx = (iX - iXOld);
+					iXOld = iX;
+					SHIFTy = (iY - iYOld);
+					iYOld = iY;
+					for (int i = 0; i < size; i++)
+					{
+						if (shapesList[i]->IsSelected())
+						{
+
+							shapesList[i]->Drag(SHIFTx, SHIFTy);
+							pGr->Draw(pUI);
+							//Addshape(shapesList[i]);
+							x++;
+						}
+					}
+					//first = false;
+				}
+				
+				
+				
+			}
+		}
+			
+
+		} while (x<=2 || pUI->getIsClicked(iX, iY) != BUTTON_UP);
+
+
+
+
+
+
+
+
+
+}
+
+
+
 void Graph::Undo()
 {
 	if (LastOperation[LastOperation.size() - 1] == "Draw" && LastOperation.size() != 0){
@@ -290,15 +362,164 @@ void Graph::Redo()
 		LastOperation.push_back("Resize");
 	}
 }
-
-void Graph::StickingImage(GUI* pGUI) const
+void Graph::Duplicate()
 {
-	for (shape* aShape : shapesList) {
-		if (aShape->getImagePresentState())
-		{
-			aShape->Stick(pGUI);
+	for (auto shapePointer : shapesList)
+	{
+		Point p1,p2,p3;
+		
+		//if (shapePointer->type == "Line")
+		//{
+		//	p1 = shapePointer->Shift1();
+		//	p2 = shapePointer->Shift2();
+		//	shape* L = shapePointer->duplicate();
+		//	DuplicateList.push_back(L);
+
+
+
+		//}
+		//else if (shapePointer->type == "Circle")
+		//{
+		//	p1 = shapePointer->Shift1();
+		//	p2 = shapePointer->Shift2();
+		//	shape* C = shapePointer->duplicate();
+		//	DuplicateList.push_back(C);
+
+
+
+		//}else if (shapePointer->type == "Rect")
+		//{
+		//	//p1 = shapePointer->Shift1();
+		//	//p2 = shapePointer->Shift2();
+			shape* R = shapePointer->duplicate();
+			DuplicateList.push_back(R);
+
+
+
+		//}else if (shapePointer->type == "Triangle")
+		//{/*
+		//	p1 = shapePointer->Shift1();
+		//	p2 = shapePointer->Shift2();
+		//	p3 = shapePointer->Shift2();*/
+		//	shape* T = shapePointer->duplicate();
+		//	DuplicateList.push_back(T);
+
+
+
+		//}
+		//else if (shapePointer->type == "RegPoly")
+		//{/*
+		//	p1 = shapePointer->Shift1();
+		//	p2 = shapePointer->Shift2();
+		//	p3 = shapePointer->Shift2();*/
+		//	shape* Po = shapePointer->duplicate();
+		//	DuplicateList.push_back(Po);
+
+
+
+		//}
+		//else if (shapePointer->type == "Square")
+		//{/*
+		//	p1 = shapePointer->Shift1();
+		//	p2 = shapePointer->Shift2();
+		//	p3 = shapePointer->Shift2();*/
+		//	shape* Sq = shapePointer->duplicate();
+		//	DuplicateList.push_back(Sq);
+
+
+
+		//}
+
+		
+		
+
+	}
+	
+
+}
+void Graph::Match(GUI* pUI,Graph* pGr)
+{
+	int x, y;
+	static int score =0;
+	pUI->PrintMessage("choose first shape");
+	pUI->GetPointClicked(x,y);
+	shape* S=pGr->Getshape(x, y);
+	if (S == nullptr)
+	{
+
+		pUI->PrintMessage("No shape selected" );
+
+	}
+	else
+	{
+		int counts=0, countd =0;
+		for (int i = 0; i < shapesList.size(); i++) {
+			if (shapesList[i] == S)
+			{
+				counts=i;
+				
+
+			}
 		}
+		for (int i = 0; i < DuplicateList.size(); i++) {
+			if (DuplicateList[i] == S)
+			{
+				counts = i;
+
+
+			}
+		}
+		pUI->PrintMessage("choose 2nd shape");
+		pUI->GetPointClicked(x, y);
+		shape* S2 = pGr->Getshape(x, y);
+		if (S2 == nullptr)
+		{
+
+			pUI->PrintMessage("No shape selected");
+
+		}
+		else if (S2 != S)
+		{
+			for (int i = 0; i < shapesList.size(); i++) {
+				if (shapesList[i] == S2)
+				{
+					countd = i;
+
+
+				}
+			}
+			for (int i = 0; i < DuplicateList.size(); i++) {
+				if (DuplicateList[i] == S2)
+				{
+					countd = i;
+
+
+				}
+			}
+			if (S->type == S2->type && countd == counts)
+			{
+				score++;
+				pUI->PrintMessage("Great!");
+				Pause(500);
+				pUI->PrintMessage("Score=");
+				Pause(400);
+				pUI->PrintMessage(to_string(score));
+
+			}
+			else
+			{
+				score--;
+				pUI->PrintMessage("Missmatch! ... Try Again!");
+				Pause(500);
+				pUI->PrintMessage("(-1) Score=");
+				Pause(450);
+				pUI->PrintMessage(to_string(score));
+
+
+
+			}
+			}
+		
 	}
 }
-
 

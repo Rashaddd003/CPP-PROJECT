@@ -8,7 +8,6 @@ class Square : public shape
 private:
 	Point Corner1;
 	Point Corner2;
-	double Length;
 	//Point center;
 	//Point StPt;
 	//int sides;
@@ -21,10 +20,13 @@ public:
 	//void SetVertices();
 	virtual void Draw(GUI* pUI) const;
 	virtual bool ClickedInside(int x, int y) const;
-	shape* PasteShape() override;
+
 	virtual void Save(ofstream& OutFile);
 	virtual void Load(ifstream& Outfile);
-	void Stick(GUI* pGUI) override;
 	virtual void Resize(double x);
 	virtual void Rotate();
+	virtual void Drag(int x, int y);
+	virtual Point Shift1();
+	virtual Point Shift2();
+	virtual shape* duplicate();
 };

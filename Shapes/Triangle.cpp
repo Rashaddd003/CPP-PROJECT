@@ -1,10 +1,8 @@
 #include "Triangle.h"
-#include <cmath>
-#include <iostream>
-using namespace std;
 
 Triangle::Triangle()
 {
+
 }
 
 Triangle::Triangle(Point p1, Point p2, Point p3, GfxInfo shapeGfxInfo) :shape(shapeGfxInfo)
@@ -35,18 +33,6 @@ bool Triangle::ClickedInside(int x, int y) const
 void Triangle::Draw(GUI * pUI) const
 {
 	pUI->DrawTriangle(corner1, corner2, corner3, ShpGfxInfo);
-}
-shape* Triangle::PasteShape()
-{
-	Point corner11, corner22, corner33;
-	corner11.x = corner1.x + 20;
-	corner11.y = corner1.y - 20;
-	corner22.x = corner2.x + 20;
-	corner22.y = corner2.y - 20;
-	corner33.x = corner3.x + 20;
-	corner33.y = corner3.y - 20;
-	return new Triangle(corner11, corner22, corner33, ShpGfxInfo);
-	
 }
 void Triangle::Save(ofstream& OutFile)
 {
@@ -122,21 +108,6 @@ void Triangle::Resize(double x)
 	corner3.y = corner1.y + ((x) * (corner3.y - corner1.y));
 }
 
-void Triangle::Stick(GUI* pGUI)
-{
-	double MaxPx = max(max(corner1.x, corner2.x),corner3.x);
-	double MinPx = min(min(corner1.x, corner2.x),corner3.x);
-	double MaxPy = max(max(corner1.y, corner2.y),corner3.y);
-	double MinPy = min(min(corner1.y, corner2.y), corner3.y);
-	Point P;
-	P.x = MinPx;
-	P.y = MinPy;
-	int width = MaxPx - MinPx;
-	int length = MaxPy - MinPy;
-	string name = "images\\MenuIcons\\idkk.jpg";
-	pGUI->StickImage(name, P, width, length);
-}
-
 void Triangle::Rotate()
 {
 	Point center;
@@ -151,4 +122,69 @@ void Triangle::Rotate()
 	int swap3 = corner3.x;
 	corner3.x = -corner3.y + center.x + center.y;
 	corner3.y = swap3 - center.x + center.y;
+}
+
+void Triangle::Drag(int x, int y)
+{
+	corner1.x = corner1.x + x;
+	corner1.y = corner1.y + y;
+	corner2.x = corner2.x + x;
+	corner2.y = corner2.y + y;
+	corner3.x = corner3.x + x;
+	corner3.y = corner3.y + y;
+}
+
+Point Triangle::Shift1()
+{
+	Point p1;
+	p1.x = corner1.x + 5;
+	//p2.x = point2.x + 5;
+	p1.y = corner1.y + 5;
+	//p2.y = point2.y + 5;
+
+	return p1;
+}
+Point Triangle::Shift2()
+{
+	Point  p2;
+	p2.x = corner2.x + 5;
+	//p2.x = point2.x + 5;
+	p2.y = corner2.y + 5;
+	//p2.y = point2.y + 5;
+
+	return p2;
+
+}
+Point Triangle::Shift3()
+{
+	Point  p3;
+	p3.x = corner3.x + 5;
+	//p2.x = point2.x + 5;
+	p3.y = corner3.y + 5;
+	//p2.y = point2.y + 5;
+
+	return p3;
+}
+
+shape* Triangle::duplicate()
+{
+	Point p1;
+	p1.x = corner1.x + 60;
+	//p2.x = point2.x + 5;
+	p1.y = corner1.y + 5;
+	//p2.y = point2.y + 5;
+
+
+	Point  p2;
+	p2.x = corner2.x + 60;
+	//p2.x = point2.x + 5;
+	p2.y = corner2.y + 5;
+	//p2.y = point2.y + 5;
+
+	Point  p3;
+	p3.x = corner3.x + 60;
+	//p2.x = point2.x + 5;
+	p3.y = corner3.y + 5;
+
+	return new Triangle(p1,p2,p3,ShpGfxInfo);
 }
