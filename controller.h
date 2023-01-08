@@ -28,6 +28,13 @@
 #include "operations/opDuplicate.h"
 #include "operations/opMatch.h"
 #include "operations/opGroupShapes.h"
+#include "operations/opStickImage.h"
+#include "operations/opCopy.h"
+#include "operations/opPaste.h"
+
+
+
+
 
 class operation; //forward declaration
 

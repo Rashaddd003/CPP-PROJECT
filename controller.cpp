@@ -106,6 +106,15 @@ operation* controller::createOperation(operationType OpType)
 			pOp = new opGroupShapes(this);
 
 			break;
+		case Copy:
+			pOp = new opCopy(this);
+			break;
+		case Paste:
+			pOp = new opPaste(this);
+			break;
+		case Stick:
+			pOp = new opStickImage(this);
+			break;
 		case STATUS:	//a click on the status bar ==> no operation
 			break;
 	}

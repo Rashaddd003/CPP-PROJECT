@@ -201,3 +201,52 @@ shape* Line::duplicate()
 
 
 
+shape* Line::PasteShape()
+{
+	Point Point11, Point22;
+	Point11.x = point1.x + 20;
+	Point11.y = point1.y - 20;
+	Point22.x = point2.x + 20;
+	Point22.y = point2.y - 20;
+
+	return new Line(Point11, Point22, ShpGfxInfo);
+
+}
+void Line::Stick(GUI* pGUI)
+{
+}
+void Line::ScrambleShape(double shiftx, double shifty)
+{
+	int Dx = point1.x - shiftx;
+	int Dy = point1.y - shifty;
+	point1.x = shiftx;
+	point1.y = shifty;
+	point2.x -= Dx;
+	point2.y -= Dy;
+
+}
+int Line::GetMaxX()
+{
+	return max(point1.x, point2.x);
+}
+
+int Line::GetMaxY()
+{
+	return max(point1.y, point2.y);
+}
+
+void Line::Hide(GUI* pGUI)
+{
+
+	if (Hidden)
+	{
+		Point P;
+		P.x = point1.x;
+		P.y = point1.y;
+		int width = abs(point1.x - point2.x);
+		int length = abs(point1.y - point2.y);
+		string name = "images\\MenuIcons\\HideCard.jpg";
+		pGUI->StickImage(name, P, width, length);
+	}
+
+}

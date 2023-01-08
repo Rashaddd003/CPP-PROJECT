@@ -165,3 +165,66 @@ shape* Rect::duplicate()
 
 	return new Rect(p1,p2,ShpGfxInfo);
 }
+
+
+shape* Rect::PasteShape()
+{
+	Point Corner11, Corner22;
+	Corner11.x = Corner1.x + 20;
+	Corner11.y = Corner1.y - 20;
+	Corner22.x = Corner2.x + 20;
+	Corner22.y = Corner2.y - 20;
+
+	return new Rect(Corner11, Corner22, ShpGfxInfo);
+
+}
+void Rect::Stick(GUI* pGUI)
+{
+	Point P;
+	P.x = Corner1.x;
+	P.y = Corner1.y;
+	int width = abs(Corner1.x - Corner2.x);
+	int length = abs(Corner1.y - Corner2.y);
+	string name = "images\\MenuIcons\\idkk.jpg";
+	pGUI->StickImage(name, P, width, length);
+}
+
+void Rect::Hide(GUI* pGUI)
+{
+	if (Hidden)
+	{
+		Point P;
+		P.x = Corner1.x;
+		P.y = Corner1.y;
+		int width = abs(Corner1.x - Corner2.x);
+		int length = abs(Corner1.y - Corner2.y);
+		string name = "images\\MenuIcons\\HideCard.jpg";
+		pGUI->StickImage(name, P, width, length);
+	}
+	else
+	{
+
+	}
+
+
+}
+void Rect::ScrambleShape(double shiftx, double shifty)
+{
+
+	int Dx = Corner1.x - shiftx;
+	int Dy = Corner1.y - shifty;
+	Corner1.x = shiftx;
+	Corner1.y = shifty;
+	Corner2.x -= Dx;
+	Corner2.y -= Dy;
+}
+
+int Rect::GetMaxX()
+{
+	return max(Corner1.x, Corner2.x);
+}
+
+int Rect::GetMaxY()
+{
+	return max(Corner1.y, Corner2.y);
+}

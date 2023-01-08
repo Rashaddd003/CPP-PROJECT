@@ -10,6 +10,7 @@ Square::Square()
 Square::Square(Point p1, double lenght, GfxInfo shapeGfxInfo):shape(shapeGfxInfo)
 {
 	Corner1 = p1;
+	Length = lenght;
     //center = p1;
     //StPt = p2;
     //sides = 4;
@@ -177,4 +178,62 @@ shape* Square::duplicate()
 	double length = Corner2.x - Corner1.x;
 
 	return new Square (p1,length,ShpGfxInfo);
+}
+
+
+void Square::Stick(GUI* pGUI)
+{
+	Point P;
+	P.x = Corner1.x;
+	P.y = Corner1.y;
+	int width = abs(Corner1.x - Corner2.x);
+	int length = abs(Corner1.y - Corner2.y);
+	string name = "images\\MenuIcons\\idkk.jpg";
+	pGUI->StickImage(name, P, width, length);
+}
+
+void Square::Hide(GUI* pGUI)
+{
+
+	if (Hidden)
+	{
+		Point P;
+		P.x = Corner1.x;
+		P.y = Corner1.y;
+		int width = abs(Corner1.x - Corner2.x);
+		int length = abs(Corner1.y - Corner2.y);
+		string name = "images\\MenuIcons\\HideCard.jpg";
+		pGUI->StickImage(name, P, width, length);
+	}
+
+}
+
+
+void Square::ScrambleShape(double shiftx, double shifty)
+{
+	int Dx = Corner1.x - shiftx;
+	int Dy = Corner1.y - shifty;
+	Corner1.x = shiftx;
+	Corner1.y = shifty;
+	Corner2.x -= Dx;
+	Corner2.y -= Dy;
+
+}
+
+int Square::GetMaxX()
+{
+	return max(Corner1.x, Corner2.x);
+}
+
+int Square::GetMaxY()
+{
+	return max(Corner1.y, Corner2.y);
+}
+shape* Square::PasteShape()
+{
+	Point Corner11, Corner22;
+	Corner11.x = Corner1.x + 20;
+	Corner11.y = Corner1.y - 20;
+
+	return new Square(Corner11, Length, ShpGfxInfo);
 }

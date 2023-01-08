@@ -149,3 +149,57 @@ shape* Circle::duplicate()
 }
 
 
+shape* Circle::PasteShape()
+{
+	Point P1, P2;
+	P1.x = center.x + 20;
+	P1.y = center.y - 20;
+	P2.x = radius.x + 20;
+	P2.y = radius.y - 20;
+	return new Circle(P1, P2, ShpGfxInfo);
+}
+void Circle::Stick(GUI* pGUI)
+{
+	double radiuss = sqrt(pow((radius.x - center.x), 2) + pow((radius.y - center.y), 2));
+	Point P;
+	P.x = center.x - radiuss;
+	P.y = center.y - radiuss;
+	int width = radiuss * 2;
+	int length = width;
+	string name = "images\\MenuIcons\\idkk.jpg";
+	pGUI->StickImage(name, P, width, length);
+}
+
+void Circle::Hide(GUI* pGUI)
+{
+	if (Hidden)
+	{
+		double radiuss = sqrt(pow((radius.x - center.x), 2) + pow((radius.y - center.y), 2));
+		Point P;
+		P.x = center.x - radiuss;
+		P.y = center.y - radiuss;
+		int width = radiuss * 2;
+		int length = width;
+		string name = "images\\MenuIcons\\HideCard.jpg";
+		pGUI->StickImage(name, P, width, length);
+	}
+}
+void Circle::ScrambleShape(double shiftx, double shifty)
+{
+	int Dx = center.x - shiftx;
+	int Dy = center.y - shifty;
+	center.x = shiftx;
+	center.y = shifty;
+	radius.x -= Dx;
+	radius.y -= Dy;
+}
+
+int Circle::GetMaxX()
+{
+	return max(center.x, radius.x);
+}
+
+int Circle::GetMaxY()
+{
+	return max(center.y, radius.y);
+}
