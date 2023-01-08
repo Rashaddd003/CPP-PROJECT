@@ -34,13 +34,9 @@ public:
 	void ChngFillClr(color Fclr);	//changes the shape's filling color
 	void setSaved();
 	void setImagePresent();
-<<<<<<< Updated upstream
-	bool getImagePresentState();
-=======
 	void setHideorNot(bool t);
 	bool getImagePresentState();
 	bool getHideorNot();
->>>>>>> Stashed changes
 	virtual void Stick(GUI* pGUI);
 	virtual void Hide(GUI* pGUI)=0;
 	bool IsSaved();

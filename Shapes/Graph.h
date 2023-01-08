@@ -45,10 +45,7 @@ public:
 	void Undo();
 	void Redo();
 	void StickingImage(GUI* pGUI) const ;
-<<<<<<< Updated upstream
-=======
 	void HideAShape(GUI* pGUI) const ;
 	void unHideAShape(GUI* pGUI) const ;
->>>>>>> Stashed changes
 	void Scramble();
 };
