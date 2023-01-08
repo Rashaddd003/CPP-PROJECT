@@ -45,4 +45,5 @@ public:
 	void Undo();
 	void Redo();
 	void StickingImage(GUI* pGUI) const ;
+	void Scramble();
 };

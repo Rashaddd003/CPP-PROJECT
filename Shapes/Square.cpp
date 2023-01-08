@@ -132,6 +132,22 @@ void Square::Stick(GUI* pGUI)
 	pGUI->StickImage(name, P, width, length);
 }
 
+void Square::Hide(GUI* pGUI)
+{
+
+	if (Hidden)
+	{
+		Point P;
+		P.x = Corner1.x;
+		P.y = Corner1.y;
+		int width = abs(Corner1.x - Corner2.x);
+		int length = abs(Corner1.y - Corner2.y);
+		string name = "images\\MenuIcons\\HideCard.jpg";
+		pGUI->StickImage(name, P, width, length);
+	}
+
+}
+
 
 void Square::Resize(double x)
 {
@@ -154,4 +170,25 @@ void Square::Rotate()
 	int swap1 = Corner2.x;
 	Corner2.x = -Corner2.y + center.x + center.y;
 	Corner2.y = swap1 - center.x + center.y;
+}
+
+void Square::ScrambleShape(double shiftx, double shifty)
+{
+	int Dx = Corner1.x - shiftx;
+	int Dy = Corner1.y - shifty;
+	Corner1.x = shiftx;
+	Corner1.y = shifty;
+	Corner2.x -= Dx;
+	Corner2.y -= Dy;
+
+}
+
+int Square::GetMaxX()
+{
+	return max(Corner1.x, Corner2.x);
+}
+
+int Square::GetMaxY()
+{
+	return max(Corner1.y, Corner2.y);
 }

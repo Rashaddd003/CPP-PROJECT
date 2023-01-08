@@ -63,6 +63,11 @@ shape* shape::PasteShape()
 	return nullptr;
 }
 
+void shape::ScrambleShape(double shiftx, double shifty)
+{
+}
+
+
 
 
 

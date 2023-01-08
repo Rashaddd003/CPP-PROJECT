@@ -86,13 +86,14 @@ shape* Graph::Getshape(int x, int y) const
 
 void Graph::CopyShape()
 {
-	Clipboard.clear();
+	/*Clipboard.clear();
 	for (shape* aShape : shapesList) {
 		if (aShape->IsSelected())
 		{
 			Clipboard.push_back(aShape);
 		}
-	}
+	}*/
+	Scramble();
 }
 
 void Graph::oppPasteShape()
@@ -175,13 +176,13 @@ void Graph::load(ifstream& inputfile, GUI* pUI, Graph* pGr)
 			p->Load(inputfile);
 			Addshape(p);
 		}
-		else if (type == "RegPoly")
+		/*else if (type == "RegPoly")
 		{
 			p = new RegPolygon();
 			p->Load(inputfile);
 			Addshape(p);
 
-		}
+		}*/
 		else if (type =="Square")
 		{
 			p = new Square();
@@ -298,6 +299,22 @@ void Graph::StickingImage(GUI* pGUI) const
 		{
 			aShape->Stick(pGUI);
 		}
+	}
+}
+
+void Graph::Scramble()
+{
+	srand(time(0));
+	
+	int dx, dy;
+	
+	for (int i = 0; i < shapesList.size(); i++) {
+		
+		dy = 350 + (rand() % 350);
+		dx = 250 + (rand() % 1000);
+		cout <<"   X == " << dx << "   Y ===  " << dy << endl;
+		if (Getshape(dx, dy) == nullptr)
+			shapesList[i]->ScrambleShape(dx, dy);
 	}
 }
 

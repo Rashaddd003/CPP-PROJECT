@@ -152,3 +152,52 @@ void Triangle::Rotate()
 	corner3.x = -corner3.y + center.x + center.y;
 	corner3.y = swap3 - center.x + center.y;
 }
+
+void Triangle::ScrambleShape(double shiftx, double shifty)
+{
+	int Dx = corner1.x - shiftx;
+	int Dy = corner1.y - shifty;
+	corner1.x = shiftx;
+	corner1.y = shifty;
+
+		corner2.x -= Dx;
+		corner3.x -= Dx;
+		corner2.y -= Dy;
+		corner3.y -= Dy;
+
+
+
+
+}
+
+int Triangle::GetMaxX()
+{
+	return max(max(corner1.x, corner2.x), corner3.x);
+}
+
+int Triangle::GetMaxY()
+{
+	return max(max(corner1.y, corner2.y), corner3.y);
+}
+
+void Triangle::Hide(GUI* pGUI)
+{
+	if (Hidden)
+	{
+		double MaxPx = max(max(corner1.x, corner2.x), corner3.x);
+		double MinPx = min(min(corner1.x, corner2.x), corner3.x);
+		double MaxPy = max(max(corner1.y, corner2.y), corner3.y);
+		double MinPy = min(min(corner1.y, corner2.y), corner3.y);
+		Point P;
+		P.x = MinPx;
+		P.y = MinPy;
+		int width = MaxPx - MinPx;
+		int length = MaxPy - MinPy;
+		string name = "images\\MenuIcons\\HideCard.jpg";
+		pGUI->StickImage(name, P, width, length);
+	}
+
+
+}
+
+

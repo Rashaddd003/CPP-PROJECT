@@ -16,6 +16,7 @@ protected:
 	int ID;		//Each shape has an ID
 	GfxInfo ShpGfxInfo;	//shape graphis info
 	bool ImagePresent = false;
+	bool Hidden = false;	
 	/// Add more parameters if needed.  OK!
 
 public:
@@ -35,8 +36,10 @@ public:
 	void setImagePresent();
 	bool getImagePresentState();
 	virtual void Stick(GUI* pGUI);
+	virtual void Hide(GUI* pGUI)=0;
 	bool IsSaved();
 	virtual shape* PasteShape();
+	virtual void ScrambleShape(double shiftx, double shifty);
 	///The following functions should be supported by the shape class
 	///It should be overridden by each inherited shape
 
@@ -50,6 +53,8 @@ public:
 	virtual void Load(ifstream &Infile) = 0;	//Load the shape parameters to the file
 	virtual void Resize(double) = 0;
 	virtual void Rotate() = 0;
+	virtual int GetMaxX() = 0;
+	virtual int GetMaxY() = 0;
 	
 	//virtual void PrintInfo(Output* pOut) = 0;	//print all shape info on the status bar
 };

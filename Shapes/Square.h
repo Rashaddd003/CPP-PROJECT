@@ -25,6 +25,10 @@ public:
 	virtual void Save(ofstream& OutFile);
 	virtual void Load(ifstream& Outfile);
 	void Stick(GUI* pGUI) override;
+	virtual void Hide(GUI* pGUI) override;
 	virtual void Resize(double x);
 	virtual void Rotate();
+	virtual void ScrambleShape(double shiftx, double shifty) override;
+	virtual int GetMaxX() override;
+	virtual int GetMaxY() override;
 };
