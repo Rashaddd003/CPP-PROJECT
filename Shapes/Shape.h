@@ -18,15 +18,19 @@ protected:
 	bool ImagePresent = false;
 	bool Hidden = false;	
 	/// Add more parameters if needed.  OK!
+	
+	/// Add more parameters if needed.
 
 public:
 	string type;
 
 	shape();
 	shape(GfxInfo shapeGfxInfo);
-	virtual ~shape() {}
+	virtual ~shape() {};
 	void SetSelected(bool s);	//select/unselect the shape
+	void setGrouped(bool);
 	bool IsSelected() const;	//check whether fig is selected
+	bool IsGrouped() const;
 	GfxInfo getShpGfx()const;
 	virtual void Draw(GUI* pUI) const  = 0 ;		//Draw the shape
 	virtual bool ClickedInside(int x, int y) const;
@@ -42,6 +46,7 @@ public:
 	bool IsSaved();
 	virtual shape* PasteShape();
 	virtual void ScrambleShape(double shiftx, double shifty);
+	bool IsSaved();
 	///The following functions should be supported by the shape class
 	///It should be overridden by each inherited shape
 
@@ -57,6 +62,11 @@ public:
 	virtual void Rotate() = 0;
 	virtual int GetMaxX() = 0;
 	virtual int GetMaxY() = 0;
+	virtual void Drag(int SHIFTx,int SHIFTy) = 0;
+	virtual Point Shift1() = 0;
+	virtual Point Shift2() = 0;
+	virtual shape* duplicate()=0;
+
 	
 	//virtual void PrintInfo(Output* pOut) = 0;	//print all shape info on the status bar
 };

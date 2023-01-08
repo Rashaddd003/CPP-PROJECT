@@ -65,6 +65,7 @@ shape* RegPolygon::PasteShape()
 	return new RegPolygon(C1, St1, getSides(), getShpGfx());
 }
 
+
 void RegPolygon::Save(ofstream& OutFile)
 {
     OutFile << type << " " <<sides<<" "<<center.x << " " << center.y << " " << StPt.x << " " << StPt.y << " " << ShpGfxInfo.isFilled;
@@ -171,6 +172,7 @@ void RegPolygon::Hide(GUI* pGUI)
 
 }
 
+
 void RegPolygon::Rotate()
 {
 	int swap1;
@@ -181,6 +183,7 @@ void RegPolygon::Rotate()
 
 	}
 }
+
 
 void RegPolygon::ScrambleShape(double shiftx, double shifty)
 {
@@ -202,6 +205,43 @@ int RegPolygon::GetMaxX()
 int RegPolygon::GetMaxY()
 {
 	return max(center.y, StPt.y);
+
+void RegPolygon::Drag(int x, int y)
+{
+	center.x = center.x + x;
+	center.y = center.y + y;
+	StPt.x = StPt.x + x;
+	StPt.y = StPt.y + y;
+	for (int i = 0; i < sides; i++) {
+		
+		Vertexx[i] = Vertexx[i] + x;
+		Vertexy[i] = Vertexy[i] +y;
+
+	}
+	
+}
+
+Point RegPolygon::Shift1()
+{
+	Point p;
+	return p;
+}
+Point RegPolygon::Shift2()
+{
+	Point p;
+	return p;
+}
+
+shape* RegPolygon::duplicate()
+{
+	Point p1,p2;
+	 p1.x= StPt.x + 60;
+	p2.x = center.x + 60;
+
+	p1.y = StPt.y + 40;
+	p2.y= center.y + 40;
+
+	return new RegPolygon(p2,p1,sides,ShpGfxInfo);
 }
 
 

@@ -39,18 +39,6 @@ bool Rect::ClickedInside(int x, int y) const
 
 }
 
-shape* Rect::PasteShape()
-{
-	Point Corner11, Corner22;
-	Corner11.x = Corner1.x + 20;
-	Corner11.y = Corner1.y - 20;
-	Corner22.x = Corner2.x + 20;
-	Corner22.y = Corner2.y - 20;
-
-	return new Rect(Corner11, Corner22, ShpGfxInfo);
-
-}
-
 void Rect::Save(ofstream& OutFile)
 {
 	OutFile << type << " " << Corner1.x << " " << Corner1.y << " " << Corner2.x << " " << Corner2.y << " " << (ShpGfxInfo.isFilled) << " " << to_string(ShpGfxInfo.FillClr.ucRed) << " " << to_string(ShpGfxInfo.FillClr.ucGreen) << " " << to_string(ShpGfxInfo.FillClr.ucBlue) << " " << to_string(ShpGfxInfo.DrawClr.ucRed) << " " << to_string(ShpGfxInfo.DrawClr.ucGreen) << " " << to_string(ShpGfxInfo.DrawClr.ucBlue) << " " << (ShpGfxInfo.BorderWdth) << endl;
@@ -166,6 +154,7 @@ void Rect::Rotate()
 	Corner2.y = swap1 - center.x + center.y;
 }
 
+
 void Rect::ScrambleShape(double shiftx, double shifty)
 {
 
@@ -185,4 +174,46 @@ int Rect::GetMaxX()
 int Rect::GetMaxY()
 {
 	return max(Corner1.y, Corner2.y);
+=======
+void Rect::Drag(int x, int y)
+{
+	Corner1.x = Corner1.x + x;
+	Corner1.y = Corner1.y + y;
+	Corner2.x = Corner2.x + x;
+	Corner2.y = Corner2.y + y;
+}
+
+Point Rect::Shift1()
+{
+	Point p1;
+	p1.x = Corner1.x + 60;
+	//p2.x = point2.x + 5;
+	p1.y = Corner1.y ;
+	//p2.y = point2.y + 5;
+
+	return p1;
+}
+Point Rect::Shift2()
+{
+	Point  p2;
+	p2.x = Corner2.x + 60;
+	//p2.x = point2.x + 5;
+	p2.y = Corner2.y ;
+	//p2.y = point2.y + 5;
+
+	return p2;
+}
+
+shape* Rect::duplicate()
+{
+	Point p1;
+	p1.x = Corner1.x + 60;
+	//p2.x = point2.x + 5;
+	p1.y = Corner1.y;
+	Point  p2;
+	p2.x = Corner2.x + 60;
+	//p2.x = point2.x + 5;
+	p2.y = Corner2.y;
+
+	return new Rect(p1,p2,ShpGfxInfo);
 }

@@ -13,5 +13,4 @@ void opRotateShape::Execute()
 	Graph* pGr = pControl->getGraph();
 
 	pGr->RotateShape();
-	pGr->Addoperation("Rotate");
 }

@@ -19,14 +19,15 @@
 #include "operations/opSave.h"
 #include "operations/opExit.h"
 #include "operations/opToPlayMode.h"
+#include "operations/opToDrawMode.h"
 #include "operations/opResizeShape.h"
 #include "operations/opRotateShape.h"
 #include "operations/opUndo.h"
 #include "operations/opRedo.h"
-#include "operations/opCopy.h"
-#include "operations/opPaste.h"
-#include "operations/opStickImage.h"
-#include "operations/opStickImage.h"
+#include "operations/opDrag.h"
+#include "operations/opDuplicate.h"
+#include "operations/opMatch.h"
+#include "operations/opGroupShapes.h"
 
 class operation; //forward declaration
 

@@ -9,9 +9,20 @@ shape::shape(GfxInfo shapeGfxInfo)
 void shape::SetSelected(bool s)
 {	ShpGfxInfo.isSelected = s; }
 
+void shape::setGrouped(bool s)
+{
+	ShpGfxInfo.isGrouped = s;
+}
+
+
 bool shape::IsSelected() const
 {	
 	return ShpGfxInfo.isSelected;
+}
+
+bool shape::IsGrouped() const
+{
+	return ShpGfxInfo.isGrouped;
 }
 
 GfxInfo shape::getShpGfx() const
@@ -39,6 +50,7 @@ void shape::setSaved()
 	ShpGfxInfo.isSaved = true;
 }
 
+
 void shape::setImagePresent()
 {
 	ImagePresent = true;
@@ -62,6 +74,7 @@ bool shape::getHideorNot()
 void shape::Stick(GUI* pGUI)
 {
 }
+
 
 bool shape::IsSaved()
 {

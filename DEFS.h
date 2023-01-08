@@ -27,18 +27,18 @@ enum operationType //The operations supported (you can add more if needed)
 	DEL,			//Delete a shape(s)
 	MOVE,			//Move a shape(s)
 	RESIZE,			//Resize a shape(s)
-	ROTATE,			//Rotate a shape(s)
+	ROTATE,//Rotate a shape(s)
 	UNDO,
 	REDO,
+	GROUP,
+	DUPLE,
+	MATCH,
 	SEND_BACK,		//Send a shape to the back of all shapes
 	BRNG_FRNT,		//Bring a shape to the front of all shapes
 	SAVE,	//Save the whole graph to a file
 	SELECT,
 	Delete,
 	LOAD,//Load a graph from a file
-	Copy,
-	Paste,
-	Stick,
 	Draw_Square,// Draw Square
 	EXIT,			//Exit the application
 
