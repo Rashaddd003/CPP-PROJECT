@@ -39,30 +39,8 @@ void shape::setSaved()
 	ShpGfxInfo.isSaved = true;
 }
 
-void shape::setImagePresent()
-{
-	ImagePresent = true;
-}
-
-bool shape::getImagePresentState()
-{
-	return ImagePresent;
-}
-
-void shape::Stick(GUI* pGUI)
-{
-}
-
 bool shape::IsSaved()
 {
 	return ShpGfxInfo.isSaved;
 }
-
-shape* shape::PasteShape()
-{
-	return nullptr;
-}
-
-
-
 

@@ -31,15 +31,6 @@ bool Circle::ClickedInside(int x, int y) const
 	else
 		return false;
 }
-shape* Circle::PasteShape()
-{
-	Point P1, P2;
-	P1.x = center.x + 20;
-	P1.y = center.y - 20;
-	P2.x = radius.x + 20;
-	P2.y = radius.y - 20;
-	return new Circle(P1, P2, ShpGfxInfo);
-}
 void Circle::Save(ofstream& OutFile)
 {
 	OutFile << type << " " << center.x << " " << center.y << " " << radius.x << " " << radius.y << " " << ShpGfxInfo.isFilled;
@@ -108,21 +99,53 @@ void Circle::Resize(double x)
 	radius.y = center.y + ((x) * (radius.y - center.y));
 }
 
-void Circle::Stick(GUI* pGUI)
-{
-	double radiuss = sqrt(pow((radius.x - center.x), 2) + pow((radius.y - center.y), 2));
-	Point P;
-	P.x = center.x - radiuss;
-	P.y = center.y - radiuss;
-	int width = radiuss * 2;
-	int length = width;
-	string name = "images\\MenuIcons\\idkk.jpg";
-	pGUI->StickImage(name, P, width, length);
-}
-
 void Circle::Rotate()
 {
 }
 
+void Circle::Drag(int x, int y)
+{
+	center.x = center.x + x;
+	center.y = center.y + y;
+	radius.x = radius.x + x;
+	radius.y = radius.y + y;
+
+}
+
+Point Circle::Shift1() 
+{
+	Point p1;
+	p1.x = center.x + 60;
+	//p2.x = point2.x + 5;
+	p1.y = center.y + 5;
+	//p2.y = point2.y + 5;
+
+	return p1;
+}
+Point Circle::Shift2()
+{
+	Point  p2;
+	p2.x = radius.x + 60;
+	//p2.x = point2.x + 5;
+	p2.y = radius.y + 5;
+	//p2.y = point2.y + 5;
+
+	return p2;
+}
+
+shape* Circle::duplicate()
+{
+
+	Point p1;
+	p1.x = center.x + 60;
+	//p2.x = point2.x + 5;
+	p1.y = center.y;
+	Point  p2;
+	p2.x = radius.x + 60;
+	//p2.x = point2.x + 5;
+	p2.y = radius.y;
+
+	return new Circle(p1, p2, ShpGfxInfo);
+}
 
 

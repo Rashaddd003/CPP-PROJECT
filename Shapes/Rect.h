@@ -13,11 +13,14 @@ public:
 	virtual ~Rect();
 	virtual void Draw(GUI* pUI) const;
 	virtual bool ClickedInside(int x, int y) const;
-	shape* PasteShape() override;
+
 	virtual void Save(ofstream& OutFile);
 	virtual void Load(ifstream& Outfile);
 	virtual void Resize(double x);
-	void Stick(GUI* pGUI) override;
 	virtual void Rotate();
+	virtual void Drag(int x, int y);
+	virtual Point Shift1();
+	virtual Point Shift2();
+	virtual shape* duplicate();
 };
 

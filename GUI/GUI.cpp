@@ -1,14 +1,13 @@
 #include "GUI.h"
 #include "../Shapes/Shape.h"
-using namespace std;
-#include <string>
+
 GUI::GUI()
 {
 	//Initialize user interface parameters
 	InterfaceMode = MODE_DRAW;
 
 	width = 1600;
-	height = 900;
+	height = 700;
 	wx = 5;
 	wy = 5;
 
@@ -71,6 +70,8 @@ string GUI::GetSrting() const
 	}
 }
 
+
+
 //This function reads the position where the user clicks to determine the desired operation
 operationType GUI::GetUseroperation() const
 {
@@ -101,13 +102,11 @@ operationType GUI::GetUseroperation() const
 			case ICON_PLAY: return TO_PLAY;
 			case ICON_Load: return LOAD;
 			case ICON_Select: return SELECT;
-			case ICON_Copy: return Copy;
-			case ICON_Paste: return Paste;
-			case ICON_Stick: return Stick;
 			case ICON_DELETE: return Delete;
 			case ICON_EXIT: return EXIT;
 			case ICON_RESIZE: return RESIZE;
 			case ICON_ROTATE: return ROTATE;
+			case ICON_DRAG: return MOVE;
 			case ICON_UNDO: return UNDO;
 			case ICON_REDO: return REDO;
 			case ICON_PALETTE: if (x > 630 & x < (630 + 10))
@@ -172,7 +171,10 @@ operationType GUI::GetUseroperation() const
 
 			switch (ClickedIconOrder)
 			{
+			case DrawMode: return TO_DRAW;
 			case ICONEXIT: return EXIT;
+			case Duple: return DUPLE;
+			case Match: return MATCH;
 			default: return EMPTY;	//A click on empty place in desgin toolbar
 			}
 		}
@@ -241,9 +243,6 @@ void GUI::CreateDrawToolBar()
 	MenuIconImages[ICON_CHANGE_COLOR] = "images\\MenuIcons\\Change_Draw_Color.jpg";
 	MenuIconImages[ICON_CHANGE_FILL_COLOR] = "images\\MenuIcons\\Change_Fill_Color.jpg";
 	MenuIconImages[ICON_Select] = "images\\MenuIcons\\Icon_Select.jpg";
-	MenuIconImages[ICON_Copy] = "images\\MenuIcons\\Copy.jpg";
-	MenuIconImages[ICON_Paste] = "images\\MenuIcons\\Paste.jpg";
-	MenuIconImages[ICON_Stick] = "images\\MenuIcons\\Sticker.jpg";
 	MenuIconImages[ICON_DELETE] = "images\\MenuIcons\\DeleteIcon.jpg";
 	MenuIconImages[ICON_RECT] = "images\\MenuIcons\\Menu_Rect.jpg";
 	MenuIconImages[ICON_CIRC] = "images\\MenuIcons\\Menu_Circ.jpg";
@@ -258,6 +257,7 @@ void GUI::CreateDrawToolBar()
 	MenuIconImages[ICON_PLAY] = "images\\MenuIcons\\playmode.jpg";
 	MenuIconImages[ICON_RESIZE] = "images\\MenuIcons\\Menu_Resize.jpg";
 	MenuIconImages[ICON_ROTATE] = "images\\MenuIcons\\Menu_Rotate.jpg";
+	MenuIconImages[ICON_DRAG] = "images\\MenuIcons\\Drag.jpg";
 	MenuIconImages[ICON_UNDO] = "images\\MenuIcons\\Menu_Undo.jpg";
 	MenuIconImages[ICON_REDO] = "images\\MenuIcons\\Menu_Redo.jpg";
 	
@@ -283,8 +283,11 @@ void GUI::CreatePlayToolBar()
 	InterfaceMode = MODE_PLAY;
 	ClearToolBar();
 	string MenuIconImages[PLAY_ICON_COUNT];
+	MenuIconImages[DrawMode] = "images\\MenuIcons\\DrawMode.jpg";
 	MenuIconImages[ICONSELECT] = "images\\MenuIcons\\Change_Fill_Color.jpg";
 	MenuIconImages[ICONEXIT] = "images\\MenuIcons\\Menu_Exit.jpg";
+	MenuIconImages[Duple] = "images\\MenuIcons\\Duplicate.jpg";
+	MenuIconImages[Match] = "images\\MenuIcons\\Match.jpg";
 	for (int i = 0; i < PLAY_ICON_COUNT; i++)
 		pWind->DrawImage(MenuIconImages[i], i * MenuIconWidth, 0, MenuIconWidth, ToolBarHeight);
 
@@ -303,12 +306,6 @@ void GUI::ClearDrawArea() const
 	pWind->DrawRectangle(0, ToolBarHeight, width, height - StatusBarHeight);
 
 }
-
-void GUI::StickImage(string PathOfImage, Point Pointt, int WW, int LL) const
-{
-	pWind->DrawImage(PathOfImage, Pointt.x, Pointt.y, WW, LL);
-}
-
 //////////////////////////////////////////////////////////////////////////////////////////
 
 void GUI::PrintMessage(string msg) const	//Prints a message on status bar
@@ -353,6 +350,12 @@ void GUI::changeCrntFillColor(color selectedColor)
 {
 	IsShapeFilled = true;
 	FillColor = selectedColor;
+}
+/////////////////////////////////////////////////////////////////////////////////
+const buttonstate GUI::getIsClicked(int &iX, int &iY) {
+
+	
+	return(pWind->GetButtonState(LEFT_BUTTON, iX, iY));
 }
 
 
