@@ -261,7 +261,7 @@ void GUI::CreateDrawToolBar()
 	MenuIconImages[ICON_DRAG] = "images\\MenuIcons\\Drag.jpg";
 	MenuIconImages[ICON_UNDO] = "images\\MenuIcons\\Menu_Undo.jpg";
 	MenuIconImages[ICON_REDO] = "images\\MenuIcons\\Menu_Redo.jpg";
-	MenuIconImages[ICON_GROUP] = "images\\MenuIcons\\Menu_Save.jpg";
+	MenuIconImages[ICON_GROUP] = "images\\MenuIcons\\Menu_group.jpg";
 
 	
 
